@@ -7,9 +7,6 @@ st.set_page_config(
     layout="wide"
 )
 
-# -----------------------------
-# Dados temporários
-# -----------------------------
 if "pacientes" not in st.session_state:
     st.session_state.pacientes = []
 
@@ -20,27 +17,24 @@ if "tarefas" not in st.session_state:
     st.session_state.tarefas = []
 
 
-# -----------------------------
-# Estilo visual premium
-# -----------------------------
 st.markdown(
     """
     <style>
     .stApp {
         background:
-            radial-gradient(circle at top left, rgba(198, 231, 242, 0.55), transparent 35%),
-            radial-gradient(circle at top right, rgba(222, 238, 243, 0.8), transparent 30%),
-            linear-gradient(135deg, #f8fbfd 0%, #eef6f9 45%, #ffffff 100%);
-        color: #18313f;
+            radial-gradient(circle at top left, rgba(201, 164, 93, 0.18), transparent 28%),
+            radial-gradient(circle at top right, rgba(218, 157, 138, 0.20), transparent 30%),
+            linear-gradient(135deg, #fbf7ef 0%, #fffdf8 50%, #f6eadc 100%);
+        color: #18323a;
     }
 
     [data-testid="stSidebar"] {
-        background: linear-gradient(180deg, #092331 0%, #12384a 45%, #1f6078 100%);
-        border-right: 1px solid rgba(255,255,255,0.15);
+        background: linear-gradient(180deg, #082f3a 0%, #123f49 60%, #8a6a38 100%);
+        border-right: 1px solid rgba(218, 184, 112, 0.4);
     }
 
     [data-testid="stSidebar"] * {
-        color: white !important;
+        color: #fff8ea !important;
     }
 
     .block-container {
@@ -49,154 +43,181 @@ st.markdown(
     }
 
     h1, h2, h3 {
-        font-family: "Segoe UI", sans-serif;
-        letter-spacing: -0.03em;
+        font-family: Georgia, "Times New Roman", serif;
+        letter-spacing: 0.02em;
     }
 
     .hero {
         background:
-            linear-gradient(135deg, rgba(7, 34, 47, 0.96), rgba(44, 118, 145, 0.92)),
-            url("https://images.unsplash.com/photo-1559757175-0eb30cd8c063?auto=format&fit=crop&w=1600&q=80");
-        background-size: cover;
-        background-position: center;
-        padding: 58px;
+            linear-gradient(135deg, rgba(255,255,255,0.92), rgba(255,248,235,0.96));
+        border: 1px solid rgba(196, 157, 82, 0.45);
         border-radius: 34px;
-        color: white;
-        box-shadow: 0 25px 60px rgba(13, 55, 75, 0.25);
-        margin-bottom: 32px;
+        padding: 52px 40px;
+        text-align: center;
+        box-shadow: 0 22px 60px rgba(79, 55, 26, 0.14);
+        margin-bottom: 34px;
         position: relative;
         overflow: hidden;
     }
 
-    .hero h1 {
-        font-size: 58px;
-        margin-bottom: 8px;
-        font-weight: 850;
+    .hero::before {
+        content: "◜";
+        position: absolute;
+        left: 30px;
+        top: 10px;
+        font-size: 140px;
+        color: rgba(196, 157, 82, 0.16);
     }
 
-    .hero p {
-        font-size: 20px;
-        max-width: 760px;
-        opacity: 0.96;
-        line-height: 1.6;
+    .hero::after {
+        content: "◝";
+        position: absolute;
+        right: 30px;
+        top: 10px;
+        font-size: 140px;
+        color: rgba(196, 157, 82, 0.16);
+    }
+
+    .brand-title {
+        font-size: 68px;
+        font-weight: 500;
+        color: #082f3a;
+        letter-spacing: 0.16em;
+        margin-bottom: 4px;
+    }
+
+    .brand-subtitle {
+        font-size: 30px;
+        color: #a47a3c;
+        font-style: italic;
+        margin-bottom: 24px;
+    }
+
+    .gold-line {
+        width: 72%;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, #c9a45d, transparent);
+        margin: 22px auto;
     }
 
     .tag {
         display: inline-block;
-        background: rgba(255,255,255,0.18);
-        border: 1px solid rgba(255,255,255,0.28);
-        backdrop-filter: blur(8px);
+        background: #f7ead7;
+        color: #143c46;
+        border: 1px solid rgba(196, 157, 82, 0.45);
         padding: 9px 16px;
         border-radius: 999px;
         font-size: 14px;
         font-weight: 700;
-        margin: 6px 6px 0 0;
+        margin: 6px;
     }
 
-    .glass-card {
-        background: rgba(255,255,255,0.78);
-        border: 1px solid rgba(215,235,242,0.95);
+    .panel {
+        background: rgba(255,255,255,0.82);
+        border: 1px solid rgba(196, 157, 82, 0.42);
         border-radius: 28px;
+        overflow: hidden;
+        box-shadow: 0 18px 45px rgba(79, 55, 26, 0.12);
+        margin-bottom: 26px;
+        min-height: 335px;
+    }
+
+    .panel-header-navy {
+        background: linear-gradient(135deg, #082f3a, #164b56);
+        color: white;
+        padding: 18px 24px;
+        text-align: center;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 28px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+    }
+
+    .panel-header-gold {
+        background: linear-gradient(135deg, #b1843f, #d6b36a);
+        color: white;
+        padding: 18px 24px;
+        text-align: center;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 28px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+    }
+
+    .panel-header-rose {
+        background: linear-gradient(135deg, #d89178, #e9b09c);
+        color: white;
+        padding: 18px 24px;
+        text-align: center;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 28px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+    }
+
+    .panel-content {
+        padding: 30px 34px;
+        font-size: 17px;
+        line-height: 1.85;
+        color: #253b40;
+    }
+
+    .big-icon {
+        font-size: 74px;
+        text-align: center;
+        margin-bottom: 10px;
+        color: #b1843f;
+    }
+
+    .lux-card {
+        background: rgba(255,255,255,0.9);
+        border: 1px solid rgba(196, 157, 82, 0.35);
+        border-radius: 26px;
         padding: 26px;
-        box-shadow: 0 18px 45px rgba(20, 76, 96, 0.10);
-        backdrop-filter: blur(10px);
+        box-shadow: 0 14px 36px rgba(79, 55, 26, 0.10);
         margin-bottom: 20px;
     }
 
-    .service-card {
-        background: white;
-        border-radius: 28px;
-        padding: 28px;
-        min-height: 240px;
-        box-shadow: 0 16px 38px rgba(18, 76, 98, 0.10);
-        border: 1px solid #dceef3;
-        transition: all 0.25s ease;
-        margin-bottom: 18px;
+    .lux-card h3 {
+        color: #082f3a;
+        font-size: 25px;
+        margin-bottom: 10px;
     }
 
-    .service-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 22px 48px rgba(18, 76, 98, 0.16);
-    }
-
-    .service-icon {
-        font-size: 36px;
-        margin-bottom: 12px;
-    }
-
-    .service-card h3 {
-        color: #12384a;
-        margin-bottom: 8px;
-    }
-
-    .service-card p {
-        color: #516b76;
-        font-size: 15px;
-        line-height: 1.55;
+    .lux-card p {
+        color: #4f5b5d;
+        font-size: 16px;
+        line-height: 1.6;
     }
 
     .metric-card {
-        background: linear-gradient(180deg, #ffffff 0%, #f4fbfd 100%);
-        border: 1px solid #d7ecf2;
-        border-radius: 26px;
-        padding: 28px;
+        background: linear-gradient(180deg, #ffffff, #fff7eb);
+        border: 1px solid rgba(196, 157, 82, 0.38);
+        border-radius: 24px;
+        padding: 25px;
         text-align: center;
-        box-shadow: 0 14px 35px rgba(18, 76, 98, 0.10);
+        box-shadow: 0 14px 35px rgba(79, 55, 26, 0.10);
     }
 
     .metric-number {
         font-size: 42px;
         font-weight: 900;
-        color: #1f6078;
-        margin-bottom: 4px;
+        color: #a47a3c;
     }
 
     .metric-label {
-        font-size: 15px;
-        color: #5d737c;
-        font-weight: 600;
-    }
-
-    .section-title {
-        font-size: 30px;
-        font-weight: 850;
-        color: #12384a;
-        margin-top: 18px;
-        margin-bottom: 14px;
-    }
-
-    .timeline {
-        border-left: 4px solid #6bb6ca;
-        padding-left: 22px;
-        margin-left: 8px;
-    }
-
-    .timeline-item {
-        background: white;
-        border-radius: 20px;
-        padding: 18px 22px;
-        margin-bottom: 16px;
-        box-shadow: 0 12px 28px rgba(18, 76, 98, 0.08);
-        border: 1px solid #e0f0f4;
-    }
-
-    .notice {
-        background: linear-gradient(135deg, #e9f7fb, #ffffff);
-        border: 1px solid #cbe8ef;
-        padding: 22px;
-        border-radius: 24px;
-        color: #244756;
-        box-shadow: 0 12px 30px rgba(18, 76, 98, 0.08);
+        color: #143c46;
+        font-weight: 700;
     }
 
     div.stButton > button:first-child {
-        background: linear-gradient(135deg, #164b63 0%, #4da4bd 100%);
+        background: linear-gradient(135deg, #082f3a 0%, #b1843f 100%);
         color: white;
         border: none;
         border-radius: 999px;
         padding: 0.75rem 1.5rem;
         font-weight: 800;
-        box-shadow: 0 10px 22px rgba(31, 96, 120, 0.28);
+        box-shadow: 0 10px 22px rgba(79, 55, 26, 0.22);
     }
 
     div.stButton > button:first-child:hover {
@@ -206,10 +227,12 @@ st.markdown(
     }
 
     .footer {
-        margin-top: 40px;
         text-align: center;
-        color: #6e838b;
-        font-size: 14px;
+        color: #8a6a38;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 22px;
+        font-style: italic;
+        margin-top: 35px;
     }
     </style>
     """,
@@ -217,44 +240,48 @@ st.markdown(
 )
 
 
-# -----------------------------
-# Funções visuais
-# -----------------------------
-def service_card(icon, title, text):
+def panel(titulo, cor, icon, bullets):
+    header_class = {
+        "navy": "panel-header-navy",
+        "gold": "panel-header-gold",
+        "rose": "panel-header-rose"
+    }[cor]
+
+    items = "".join([f"<li>{b}</li>" for b in bullets])
+
     st.markdown(
         f"""
-        <div class="service-card">
-            <div class="service-icon">{icon}</div>
-            <h3>{title}</h3>
-            <p>{text}</p>
+        <div class="panel">
+            <div class="{header_class}">{titulo}</div>
+            <div class="panel-content">
+                <div class="big-icon">{icon}</div>
+                <ul>{items}</ul>
+            </div>
         </div>
         """,
         unsafe_allow_html=True
     )
 
 
-def metric_card(number, label):
+def metric_card(numero, texto):
     st.markdown(
         f"""
         <div class="metric-card">
-            <div class="metric-number">{number}</div>
-            <div class="metric-label">{label}</div>
+            <div class="metric-number">{numero}</div>
+            <div class="metric-label">{texto}</div>
         </div>
         """,
         unsafe_allow_html=True
     )
 
 
-# -----------------------------
-# Menu lateral
-# -----------------------------
-st.sidebar.markdown("## 👁️ Blink Clinic")
+st.sidebar.markdown("## BLINK CLINIC")
 st.sidebar.markdown("### Oculoplástica")
-st.sidebar.caption("Pálpebras · Vias lacrimais · Órbita · Estética periocular")
+st.sidebar.caption("Planeamento estratégico · Visão 2026")
 st.sidebar.divider()
 
 pagina = st.sidebar.radio(
-    "Menu principal",
+    "Menu",
     [
         "Início",
         "Serviços",
@@ -267,26 +294,21 @@ pagina = st.sidebar.radio(
 )
 
 st.sidebar.divider()
-st.sidebar.caption("Aplicação de gestão e apresentação clínica.")
+st.sidebar.caption("Elegância clínica · Saúde do olhar")
 
 
-# -----------------------------
-# Página inicial
-# -----------------------------
 if pagina == "Início":
     st.markdown(
         """
         <div class="hero">
-            <h1>👁️ Blink Clinic</h1>
-            <p>
-            Clínica especializada em oculoplástica, dedicada à saúde, função e estética
-            da região periocular, com uma abordagem médica cuidada, moderna e personalizada.
-            </p>
-            <span class="tag">Oculoplástica</span>
-            <span class="tag">Pálpebras</span>
-            <span class="tag">Vias lacrimais</span>
+            <div class="brand-title">BLINK CLINIC</div>
+            <div class="brand-subtitle">Oculoplástica · Planeamento Estratégico</div>
+            <div class="gold-line"></div>
+            <span class="tag">Blefaroplastia</span>
+            <span class="tag">Ptose Palpebral</span>
+            <span class="tag">Vias Lacrimais</span>
             <span class="tag">Órbita</span>
-            <span class="tag">Estética periocular</span>
+            <span class="tag">Estética Periocular</span>
         </div>
         """,
         unsafe_allow_html=True
@@ -303,125 +325,124 @@ if pagina == "Início":
     with col3:
         metric_card(len(st.session_state.tarefas), "Tarefas internas")
 
-    st.markdown('<div class="section-title">Áreas de atuação</div>', unsafe_allow_html=True)
+    st.write("")
 
-    c1, c2, c3 = st.columns(3)
+    c1, c2 = st.columns(2)
 
     with c1:
-        service_card(
+        panel(
+            "Proposta de Valor",
+            "navy",
             "👁️",
-            "Cirurgia Palpebral",
-            "Avaliação e tratamento de alterações das pálpebras, incluindo blefaroplastia, ptose palpebral, entrópio e ectrópio."
+            [
+                "Blefaroplastia estética e funcional",
+                "Ptose, ectrópio e entrópio",
+                "Reconstrução lacrimal e orbitária",
+                "Abordagem médica personalizada",
+                "Resultados naturais e discretos"
+            ]
         )
 
     with c2:
-        service_card(
-            "💧",
-            "Vias Lacrimais",
-            "Estudo e tratamento de lacrimejo persistente, obstruções lacrimais e alterações do sistema lacrimal."
+        panel(
+            "Clientes",
+            "rose",
+            "👥",
+            [
+                "Adultos 40+ com rejuvenescimento periocular",
+                "Patologia palpebral e lacrimal",
+                "Casos pós-traumáticos e oncológicos",
+                "Referenciados por oftalmologistas",
+                "Público premium e exigente"
+            ]
         )
+
+    c3, c4 = st.columns(2)
 
     with c3:
-        service_card(
-            "🩺",
-            "Órbita e Região Periocular",
-            "Avaliação médica de alterações orbitárias, lesões palpebrais e estética periocular."
+        panel(
+            "Canais",
+            "gold",
+            "📱",
+            [
+                "Website e marcação online",
+                "Instagram e LinkedIn",
+                "Parcerias médicas multidisciplinares",
+                "Seguros de saúde e ADSE",
+                "Indicação de pacientes"
+            ]
+        )
+
+    with c4:
+        panel(
+            "Receitas",
+            "navy",
+            "€",
+            [
+                "Consultas de especialidade",
+                "Cirurgias estéticas privadas",
+                "Cirurgias funcionais comparticipadas",
+                "Procedimentos perioculares",
+                "Pacotes pré e pós-operatórios"
+            ]
         )
 
     st.markdown(
         """
-        <div class="glass-card">
-            <h3>Experiência pensada para o paciente</h3>
-            <p>
-            Esta aplicação pode ser usada para apresentar serviços, organizar consultas,
-            criar conteúdos de comunicação e estruturar a informação da clínica.
-            </p>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
-    st.markdown(
-        """
-        <div class="notice">
-            <strong>Nota importante:</strong> não coloques dados clínicos reais se a aplicação estiver pública.
-            Esta versão é ideal para apresentação, teste e organização inicial.
+        <div class="footer">
+            Blink Clinic · Visão 2026
         </div>
         """,
         unsafe_allow_html=True
     )
 
 
-# -----------------------------
-# Serviços
-# -----------------------------
 elif pagina == "Serviços":
-    st.title("🏥 Serviços de Oculoplástica")
-    st.write("Apresentação visual dos serviços principais da Blink Clinic.")
+    st.title("Serviços de Oculoplástica")
 
-    col1, col2, col3 = st.columns(3)
+    col1, col2 = st.columns(2)
 
     with col1:
-        service_card(
-            "✨",
-            "Blefaroplastia",
-            "Cirurgia das pálpebras superiores e/ou inferiores, com finalidade funcional, estética ou combinada, após avaliação médica."
+        st.markdown(
+            """
+            <div class="lux-card">
+                <h3>Blefaroplastia</h3>
+                <p>Cirurgia das pálpebras superiores e/ou inferiores, com finalidade funcional, estética ou combinada.</p>
+            </div>
+            <div class="lux-card">
+                <h3>Ptose Palpebral</h3>
+                <p>Avaliação e tratamento da queda da pálpebra superior, com impacto funcional ou estético.</p>
+            </div>
+            <div class="lux-card">
+                <h3>Entrópio e Ectrópio</h3>
+                <p>Correção de alterações da posição das pálpebras que podem causar desconforto ocular.</p>
+            </div>
+            """,
+            unsafe_allow_html=True
         )
 
     with col2:
-        service_card(
-            "👁️",
-            "Ptose Palpebral",
-            "Avaliação e tratamento da queda da pálpebra superior, que pode interferir com a visão ou com a simetria do olhar."
+        st.markdown(
+            """
+            <div class="lux-card">
+                <h3>Vias Lacrimais</h3>
+                <p>Avaliação de lacrimejo persistente, obstrução lacrimal e alterações do sistema lacrimal.</p>
+            </div>
+            <div class="lux-card">
+                <h3>Lesões Palpebrais</h3>
+                <p>Diagnóstico, acompanhamento e eventual remoção de lesões palpebrais.</p>
+            </div>
+            <div class="lux-card">
+                <h3>Órbita e Estética Periocular</h3>
+                <p>Avaliação da região orbitária e abordagem estética médica da área periocular.</p>
+            </div>
+            """,
+            unsafe_allow_html=True
         )
 
-    with col3:
-        service_card(
-            "🔄",
-            "Entrópio e Ectrópio",
-            "Correção de alterações da posição das pálpebras, que podem causar desconforto, irritação ocular ou lacrimejo."
-        )
 
-    col4, col5, col6 = st.columns(3)
-
-    with col4:
-        service_card(
-            "💧",
-            "Vias Lacrimais",
-            "Avaliação de lacrimejo persistente, obstrução lacrimal e alterações associadas ao sistema de drenagem lacrimal."
-        )
-
-    with col5:
-        service_card(
-            "🔬",
-            "Lesões Palpebrais",
-            "Observação, diagnóstico, acompanhamento e eventual remoção de lesões localizadas nas pálpebras."
-        )
-
-    with col6:
-        service_card(
-            "🩺",
-            "Consulta de Oculoplástica",
-            "Primeira avaliação médica, diagnóstico, esclarecimento de dúvidas e orientação terapêutica personalizada."
-        )
-
-    st.markdown(
-        """
-        <div class="notice">
-            Os serviços devem ser sempre apresentados como avaliação médica individualizada.
-            Evita prometer resultados iguais para todos os pacientes.
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
-
-# -----------------------------
-# Pacientes
-# -----------------------------
 elif pagina == "Pacientes":
-    st.title("👤 Pacientes")
-    st.write("Registo administrativo simples de pacientes.")
+    st.title("Pacientes")
 
     with st.form("form_paciente"):
         col1, col2 = st.columns(2)
@@ -465,21 +486,14 @@ elif pagina == "Pacientes":
             )
             st.success(f"Paciente {nome} guardado com sucesso.")
 
-    st.divider()
-    st.subheader("Pacientes registados")
-
-    if len(st.session_state.pacientes) == 0:
-        st.info("Ainda não há pacientes registados.")
-    else:
+    if len(st.session_state.pacientes) > 0:
         st.table(st.session_state.pacientes)
+    else:
+        st.info("Ainda não há pacientes registados.")
 
 
-# -----------------------------
-# Consultas
-# -----------------------------
 elif pagina == "Consultas":
-    st.title("📅 Consultas")
-    st.write("Organização simples de consultas e procedimentos.")
+    st.title("Consultas")
 
     with st.form("form_consulta"):
         col1, col2 = st.columns(2)
@@ -522,69 +536,47 @@ elif pagina == "Consultas":
             )
             st.success("Consulta guardada com sucesso.")
 
-    st.divider()
-    st.subheader("Consultas guardadas")
-
-    if len(st.session_state.consultas) == 0:
-        st.info("Ainda não há consultas guardadas.")
-    else:
+    if len(st.session_state.consultas) > 0:
         st.table(st.session_state.consultas)
+    else:
+        st.info("Ainda não há consultas guardadas.")
 
 
-# -----------------------------
-# Informação Clínica
-# -----------------------------
 elif pagina == "Informação Clínica":
-    st.title("ℹ️ Informação Clínica")
-    st.write("Área informativa para explicar a especialidade de forma simples e elegante.")
+    st.title("Informação Clínica")
 
     st.markdown(
         """
-        <div class="timeline">
-            <div class="timeline-item">
-                <h3>1. O que é a oculoplástica?</h3>
-                <p>
-                É uma área da oftalmologia dedicada às pálpebras, vias lacrimais,
-                órbita e região periocular.
-                </p>
-            </div>
-
-            <div class="timeline-item">
-                <h3>2. Quando procurar avaliação?</h3>
-                <p>
-                Quando existem alterações das pálpebras, lacrimejo persistente,
-                lesões palpebrais, assimetrias, desconforto ocular ou alterações estéticas do olhar.
-                </p>
-            </div>
-
-            <div class="timeline-item">
-                <h3>3. Como é a abordagem?</h3>
-                <p>
-                Cada caso deve ser avaliado individualmente, considerando a saúde ocular,
-                a função das pálpebras e os objetivos do paciente.
-                </p>
-            </div>
+        <div class="lux-card">
+            <h3>O que é a oculoplástica?</h3>
+            <p>
+            A oculoplástica é uma área da oftalmologia dedicada às pálpebras,
+            vias lacrimais, órbita e região periocular.
+            </p>
         </div>
-        """,
-        unsafe_allow_html=True
-    )
 
-    st.markdown(
-        """
-        <div class="notice">
-            Esta informação é geral e não substitui uma consulta médica individualizada.
+        <div class="lux-card">
+            <h3>Quando procurar avaliação?</h3>
+            <p>
+            Alterações das pálpebras, lacrimejo persistente, lesões palpebrais,
+            desconforto ocular, assimetrias ou alterações estéticas do olhar.
+            </p>
+        </div>
+
+        <div class="lux-card">
+            <h3>Abordagem médica</h3>
+            <p>
+            Cada paciente deve ser avaliado individualmente, considerando saúde ocular,
+            função palpebral, segurança e harmonia estética.
+            </p>
         </div>
         """,
         unsafe_allow_html=True
     )
 
 
-# -----------------------------
-# Marketing
-# -----------------------------
 elif pagina == "Marketing":
-    st.title("📣 Marketing")
-    st.write("Criação de ideias de comunicação para a Blink Clinic.")
+    st.title("Marketing")
 
     tema = st.selectbox(
         "Escolhe um tema",
@@ -600,7 +592,7 @@ elif pagina == "Marketing":
     )
 
     ideias = {
-        "Apresentação da clínica": "A Blink Clinic nasce para cuidar da saúde, função e estética do olhar, com uma abordagem médica personalizada.",
+        "Apresentação da clínica": "A Blink Clinic nasce para cuidar da saúde, função e estética do olhar, com uma abordagem médica personalizada e elegante.",
         "O que é oculoplástica": "A oculoplástica dedica-se ao tratamento das pálpebras, vias lacrimais, órbita e região periocular.",
         "Blefaroplastia": "A blefaroplastia pode ter objetivos funcionais e/ou estéticos, dependendo da avaliação médica individual.",
         "Ptose palpebral": "A ptose palpebral é a queda da pálpebra superior e pode interferir com o campo visual ou com a simetria do olhar.",
@@ -612,7 +604,7 @@ elif pagina == "Marketing":
     if st.button("Gerar texto"):
         st.markdown(
             f"""
-            <div class="glass-card">
+            <div class="lux-card">
                 <h3>Texto sugerido</h3>
                 <p>{ideias[tema]}</p>
             </div>
@@ -620,30 +612,9 @@ elif pagina == "Marketing":
             unsafe_allow_html=True
         )
 
-    st.divider()
 
-    st.subheader("Criar legenda personalizada")
-
-    objetivo = st.text_input("Objetivo da publicação", placeholder="Ex: explicar um serviço")
-    tom = st.selectbox("Tom da comunicação", ["Profissional", "Informativo", "Elegante", "Acolhedor"])
-
-    if st.button("Criar legenda"):
-        if objetivo.strip() == "":
-            st.warning("Escreve o objetivo da publicação.")
-        else:
-            st.success(
-                f"Legenda em tom {tom.lower()}: Na Blink Clinic, cada olhar é avaliado com atenção médica, "
-                f"cuidado e detalhe. Hoje falamos sobre {objetivo.lower()}, sempre com foco na segurança, "
-                f"na função e na harmonia da região periocular."
-            )
-
-
-# -----------------------------
-# Tarefas
-# -----------------------------
 elif pagina == "Tarefas":
-    st.title("✅ Tarefas internas")
-    st.write("Organização de tarefas da clínica.")
+    st.title("Tarefas internas")
 
     with st.form("form_tarefas"):
         tarefa = st.text_input("Nova tarefa")
@@ -664,19 +635,7 @@ elif pagina == "Tarefas":
             )
             st.success("Tarefa adicionada.")
 
-    st.divider()
-
-    if len(st.session_state.tarefas) == 0:
-        st.info("Ainda não há tarefas.")
-    else:
+    if len(st.session_state.tarefas) > 0:
         st.table(st.session_state.tarefas)
-
-
-st.markdown(
-    """
-    <div class="footer">
-        Blink Clinic · Oculoplástica · Pálpebras · Vias lacrimais · Órbita · Estética periocular
-    </div>
-    """,
-    unsafe_allow_html=True
-)
+    else:
+        st.info("Ainda não há tarefas.")
