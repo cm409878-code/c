@@ -6,39 +6,33 @@ st.set_page_config(
     layout="wide"
 )
 
+# ESTILO
 st.markdown(
     """
     <style>
     .stApp {
-        background: linear-gradient(135deg, #fbf7ef 0%, #fffdf8 45%, #f4eadc 100%);
+        background: linear-gradient(135deg, #fbf7ef 0%, #fffdf8 50%, #f3e8d8 100%);
         color: #062f3a;
     }
 
     [data-testid="stSidebar"] {
-        background: linear-gradient(180deg, #062f3a 0%, #123f49 60%, #8a6a38 100%);
+        background: #062f3a;
     }
 
     [data-testid="stSidebar"] * {
         color: white !important;
     }
 
-    .block-container {
-        padding-top: 2rem;
-        padding-left: 4rem;
-        padding-right: 4rem;
-        max-width: 1400px;
-    }
-
     h1, h2, h3 {
-        font-family: Georgia, "Times New Roman", serif;
+        font-family: Georgia, serif;
         color: #062f3a;
     }
 
     div.stButton > button {
-        background: linear-gradient(135deg, #062f3a 0%, #b1843f 100%);
+        background: #062f3a;
         color: white;
         border-radius: 999px;
-        padding: 0.75rem 1.5rem;
+        padding: 0.7rem 1.5rem;
         border: none;
         font-weight: 700;
     }
@@ -49,88 +43,197 @@ st.markdown(
         border: none;
     }
 
-    .brand-title {
+    .titulo {
         text-align: center;
-        font-family: Georgia, "Times New Roman", serif;
-        font-size: 68px;
-        letter-spacing: 10px;
+        font-family: Georgia, serif;
+        font-size: 64px;
+        letter-spacing: 8px;
         color: #062f3a;
-        margin-bottom: 0px;
+        margin-bottom: 0;
     }
 
-    .brand-subtitle {
+    .subtitulo {
         text-align: center;
-        font-family: Georgia, "Times New Roman", serif;
+        font-family: Georgia, serif;
         font-size: 28px;
         color: #b1843f;
         font-style: italic;
-        margin-top: -8px;
+        margin-top: 0;
     }
 
-    .gold-line {
+    .linha {
         height: 1px;
         background: linear-gradient(90deg, transparent, #b1843f, transparent);
-        margin: 26px 0 42px 0;
+        margin: 25px 0 40px 0;
     }
 
-    .section-label {
-        color: #b1843f;
-        text-transform: uppercase;
-        letter-spacing: 3px;
-        font-weight: 800;
-        font-size: 13px;
-    }
-
-    .soft-box {
-        background: rgba(255, 255, 255, 0.78);
+    .nota {
+        background: rgba(255,255,255,0.75);
         border-left: 5px solid #b1843f;
-        padding: 20px 24px;
-        border-radius: 16px;
-        color: #34484d;
-        margin-top: 18px;
-        box-shadow: 0 8px 24px rgba(90, 65, 30, 0.08);
-    }
-
-    img {
-        border-radius: 22px;
-    }
-
-    .footer {
-        text-align: center;
-        font-family: Georgia, "Times New Roman", serif;
-        color: #8a6a38;
-        font-size: 22px;
-        font-style: italic;
-        margin-top: 45px;
-    }
-
-    [data-testid="stMetricValue"] {
-        color: #b1843f;
-    }
-
-    @media (max-width: 900px) {
-        .brand-title {
-            font-size: 42px;
-            letter-spacing: 5px;
-        }
-
-        .brand-subtitle {
-            font-size: 22px;
-        }
-
-        .block-container {
-            padding-left: 1.2rem;
-            padding-right: 1.2rem;
-        }
+        padding: 18px;
+        border-radius: 14px;
+        margin-top: 20px;
     }
     </style>
     """,
     unsafe_allow_html=True
 )
 
-# Imagens por link
-IMG_OCULOPLASTICA = "https://images.unsplash.com/photo-1494869042583-f6c911f04b4c?auto=format&fit=crop&w=1000&q=80"
-IMG_OLHO = "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=1000&q=80"
-IMG_MEDICO = "https://images.unsplash.com/photo-1582750433449-648ed127bb54?auto=format&fit=crop&w=1000&q=80"
-IMG_CONSULTA = "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1000&q=80"
-IMG_CLINICA = "https://images.unsplash.com/photo-151949402
+# MENU
+st.sidebar.title("BLINK CLINIC")
+pagina = st.sidebar.radio(
+    "Menu",
+    ["Início", "Serviços", "Sobre", "Contactos"]
+)
+
+# CABEÇALHO
+st.markdown('<div class="titulo">BLINK CLINIC</div>', unsafe_allow_html=True)
+st.markdown('<div class="subtitulo">Oculoplástica · Saúde e estética do olhar</div>', unsafe_allow_html=True)
+st.markdown('<div class="linha"></div>', unsafe_allow_html=True)
+
+# PÁGINA INÍCIO
+if pagina == "Início":
+    col1, col2 = st.columns([1.2, 0.8])
+
+    with col1:
+        st.title("Precisão médica para a saúde e estética do olhar")
+
+        st.write(
+            """
+            A Blink Clinic dedica-se à avaliação e tratamento das alterações das pálpebras,
+            vias lacrimais, órbita e região periocular.
+            """
+        )
+
+        st.write(
+            """
+            A abordagem combina rigor médico, segurança clínica,
+            naturalidade e atenção à harmonia do olhar.
+            """
+        )
+
+        st.button("Marcar Consulta")
+
+        st.markdown(
+            """
+            <div class="nota">
+            Cuidado especializado em blefaroplastia, ptose palpebral,
+            vias lacrimais, lesões palpebrais e estética periocular.
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+    with col2:
+        st.image(
+            "https://images.unsplash.com/photo-1511499767150-a48a237f0083",
+            caption="Blink Clinic · Oculoplástica",
+            use_container_width=True
+        )
+
+    st.markdown('<div class="linha"></div>', unsafe_allow_html=True)
+
+    c1, c2, c3 = st.columns(3)
+
+    with c1:
+        with st.container(border=True):
+            st.subheader("👁️ Pálpebras")
+            st.write("Blefaroplastia, ptose palpebral, entrópio, ectrópio e lesões palpebrais.")
+
+    with c2:
+        with st.container(border=True):
+            st.subheader("💧 Vias lacrimais")
+            st.write("Avaliação de lacrimejo persistente e obstrução das vias lacrimais.")
+
+    with c3:
+        with st.container(border=True):
+            st.subheader("✨ Estética periocular")
+            st.write("Abordagem médica da estética do olhar com naturalidade e segurança.")
+
+# PÁGINA SERVIÇOS
+elif pagina == "Serviços":
+    st.header("Serviços de Oculoplástica")
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        with st.container(border=True):
+            st.subheader("Blefaroplastia")
+            st.write("Cirurgia das pálpebras superiores e/ou inferiores.")
+
+        with st.container(border=True):
+            st.subheader("Ptose palpebral")
+            st.write("Tratamento da queda da pálpebra superior.")
+
+        with st.container(border=True):
+            st.subheader("Entrópio e ectrópio")
+            st.write("Correção de alterações da posição das pálpebras.")
+
+    with col2:
+        with st.container(border=True):
+            st.subheader("Vias lacrimais")
+            st.write("Avaliação e tratamento de lacrimejo e obstruções lacrimais.")
+
+        with st.container(border=True):
+            st.subheader("Lesões palpebrais")
+            st.write("Avaliação e eventual remoção de lesões nas pálpebras.")
+
+        with st.container(border=True):
+            st.subheader("Estética periocular")
+            st.write("Tratamentos médicos focados na harmonia do olhar.")
+
+# PÁGINA SOBRE
+elif pagina == "Sobre":
+    col1, col2 = st.columns([0.8, 1.2])
+
+    with col1:
+        st.image(
+            "https://images.unsplash.com/photo-1559757175-0eb30cd8c063",
+            use_container_width=True
+        )
+
+    with col2:
+        st.header("Sobre a Blink Clinic")
+        st.write(
+            """
+            A Blink Clinic é uma clínica dedicada à oculoplástica,
+            uma área da oftalmologia focada nas pálpebras, vias lacrimais,
+            órbita e região periocular.
+            """
+        )
+
+        st.write("• Avaliação individualizada")
+        st.write("• Rigor médico")
+        st.write("• Resultados naturais")
+        st.write("• Comunicação clara")
+        st.write("• Acompanhamento personalizado")
+
+# PÁGINA CONTACTOS
+elif pagina == "Contactos":
+    st.header("Marcar Consulta")
+
+    with st.container(border=True):
+        nome = st.text_input("Nome")
+        contacto = st.text_input("Contacto")
+        motivo = st.selectbox(
+            "Motivo da consulta",
+            [
+                "Consulta de Oculoplástica",
+                "Blefaroplastia",
+                "Ptose palpebral",
+                "Vias lacrimais",
+                "Lesão palpebral",
+                "Estética periocular",
+                "Outro"
+            ]
+        )
+        mensagem = st.text_area("Mensagem")
+
+        if st.button("Enviar pedido"):
+            st.success("Pedido registado. Esta versão ainda não envia emails automaticamente.")
+
+st.markdown('<div class="linha"></div>', unsafe_allow_html=True)
+st.markdown(
+    "<p style='text-align:center; color:#8a6a38; font-family:Georgia, serif; font-size:20px;'>Blink Clinic · Oculoplástica · Saúde e estética do olhar</p>",
+    unsafe_allow_html=True
+)
