@@ -6,12 +6,13 @@ st.set_page_config(
     layout="wide"
 )
 
+# CSS / Design
 st.markdown(
     """
     <style>
     .stApp {
-        background: #fbf8f1;
-        color: #17333b;
+        background: linear-gradient(135deg, #fbf7ef 0%, #fffdf8 50%, #f4eadc 100%);
+        color: #0b3440;
     }
 
     [data-testid="stSidebar"] {
@@ -34,33 +35,31 @@ st.markdown(
         justify-content: space-between;
         align-items: center;
         padding: 26px 0;
-        border-bottom: 1px solid rgba(174, 133, 65, 0.35);
+        border-bottom: 1px solid rgba(178, 138, 67, 0.35);
         margin-bottom: 30px;
     }
 
     .logo {
         font-family: Georgia, "Times New Roman", serif;
-        font-size: 32px;
-        letter-spacing: 0.12em;
+        font-size: 34px;
+        letter-spacing: 0.14em;
         color: #062f3a;
         font-weight: 500;
     }
 
-    .nav {
-        font-size: 15px;
-        color: #6d5a3b;
-    }
-
     .nav span {
         margin-left: 24px;
+        color: #8a6a38;
+        font-size: 15px;
+        font-weight: 600;
     }
 
     .hero {
         display: grid;
-        grid-template-columns: 1.2fr 0.8fr;
-        gap: 40px;
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 44px;
         align-items: center;
-        padding: 60px 0 70px 0;
+        padding: 60px 0 75px 0;
     }
 
     .eyebrow {
@@ -68,13 +67,13 @@ st.markdown(
         text-transform: uppercase;
         letter-spacing: 0.18em;
         font-size: 14px;
-        font-weight: 700;
+        font-weight: 800;
         margin-bottom: 18px;
     }
 
     .hero-title {
         font-family: Georgia, "Times New Roman", serif;
-        font-size: 72px;
+        font-size: 74px;
         line-height: 1.02;
         color: #062f3a;
         margin-bottom: 24px;
@@ -82,24 +81,19 @@ st.markdown(
 
     .hero-text {
         font-size: 20px;
-        line-height: 1.7;
+        line-height: 1.75;
         color: #4c5d61;
-        max-width: 700px;
+        max-width: 760px;
         margin-bottom: 30px;
-    }
-
-    .button-row {
-        margin-top: 28px;
     }
 
     .primary-button {
         display: inline-block;
         background: #062f3a;
         color: white;
-        padding: 15px 25px;
+        padding: 15px 26px;
         border-radius: 999px;
-        text-decoration: none;
-        font-weight: 700;
+        font-weight: 800;
         margin-right: 14px;
         box-shadow: 0 12px 25px rgba(6,47,58,0.22);
     }
@@ -110,8 +104,7 @@ st.markdown(
         color: #062f3a;
         padding: 14px 24px;
         border-radius: 999px;
-        text-decoration: none;
-        font-weight: 700;
+        font-weight: 800;
         background: rgba(255,255,255,0.65);
     }
 
@@ -119,30 +112,30 @@ st.markdown(
         background: linear-gradient(145deg, #ffffff, #f6ead8);
         border: 1px solid rgba(178, 138, 67, 0.45);
         border-radius: 34px;
-        padding: 42px;
+        padding: 46px;
         box-shadow: 0 25px 60px rgba(90, 65, 30, 0.16);
         text-align: center;
     }
 
     .eye-symbol {
-        font-size: 96px;
+        font-size: 98px;
         margin-bottom: 18px;
     }
 
     .hero-card h3 {
-        font-size: 30px;
+        font-size: 31px;
         color: #062f3a;
-        margin-bottom: 12px;
+        margin-bottom: 14px;
     }
 
     .hero-card p {
         color: #5c625f;
         font-size: 17px;
-        line-height: 1.6;
+        line-height: 1.7;
     }
 
     .section {
-        padding: 55px 0;
+        padding: 58px 0;
         border-top: 1px solid rgba(178, 138, 67, 0.20);
     }
 
@@ -151,15 +144,15 @@ st.markdown(
         text-transform: uppercase;
         letter-spacing: 0.16em;
         font-size: 13px;
-        font-weight: 800;
+        font-weight: 900;
         margin-bottom: 10px;
     }
 
     .section-title {
-        font-size: 44px;
-        color: #062f3a;
-        margin-bottom: 32px;
         font-family: Georgia, "Times New Roman", serif;
+        font-size: 46px;
+        color: #062f3a;
+        margin-bottom: 34px;
     }
 
     .service-grid {
@@ -174,13 +167,13 @@ st.markdown(
         padding: 30px;
         border: 1px solid rgba(178, 138, 67, 0.28);
         box-shadow: 0 16px 35px rgba(90, 65, 30, 0.08);
-        min-height: 260px;
+        min-height: 265px;
     }
 
     .number {
         color: #b28a43;
         font-size: 22px;
-        font-weight: 800;
+        font-weight: 900;
         margin-bottom: 20px;
     }
 
@@ -192,7 +185,7 @@ st.markdown(
 
     .service-card p {
         color: #566466;
-        line-height: 1.65;
+        line-height: 1.68;
         font-size: 16px;
     }
 
@@ -207,7 +200,7 @@ st.markdown(
         background: linear-gradient(145deg, #0b3440, #174e5d);
         color: white;
         border-radius: 34px;
-        padding: 48px;
+        padding: 50px;
         min-height: 420px;
         box-shadow: 0 24px 55px rgba(6,47,58,0.20);
         display: flex;
@@ -222,30 +215,30 @@ st.markdown(
     }
 
     .portrait-card h3 {
-        font-size: 34px;
+        font-size: 36px;
         margin-bottom: 10px;
     }
 
     .about-text {
-        background: rgba(255,255,255,0.70);
+        background: rgba(255,255,255,0.74);
         border: 1px solid rgba(178, 138, 67, 0.28);
         border-radius: 34px;
-        padding: 42px;
+        padding: 44px;
     }
 
     .about-text p {
         color: #4e5b5e;
         font-size: 18px;
-        line-height: 1.8;
+        line-height: 1.85;
     }
 
     .bullet {
-        margin: 12px 0;
+        margin: 13px 0;
         color: #34484d;
         font-size: 17px;
     }
 
-    .locations {
+    .location-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 22px;
@@ -254,7 +247,7 @@ st.markdown(
     .location-card {
         background: #ffffff;
         border-radius: 24px;
-        padding: 26px;
+        padding: 28px;
         border: 1px solid rgba(178, 138, 67, 0.26);
         box-shadow: 0 12px 28px rgba(90, 65, 30, 0.07);
     }
@@ -285,9 +278,20 @@ st.markdown(
         min-height: 230px;
     }
 
+    .article-card h3 {
+        color: #062f3a;
+        font-size: 24px;
+        margin-bottom: 12px;
+    }
+
+    .article-card p {
+        color: #5c625f;
+        line-height: 1.7;
+    }
+
     .date {
         color: #b28a43;
-        font-weight: 700;
+        font-weight: 800;
         font-size: 14px;
         margin-bottom: 12px;
     }
@@ -296,7 +300,7 @@ st.markdown(
         background: linear-gradient(135deg, #062f3a, #174e5d);
         color: white;
         border-radius: 34px;
-        padding: 45px;
+        padding: 48px;
         text-align: center;
         box-shadow: 0 24px 55px rgba(6,47,58,0.20);
     }
@@ -308,12 +312,13 @@ st.markdown(
 
     .contact-box p {
         font-size: 18px;
-        opacity: 0.9;
+        opacity: 0.92;
+        line-height: 1.7;
     }
 
     .footer {
         text-align: center;
-        padding: 35px 0 20px 0;
+        padding: 38px 0 20px 0;
         color: #8a6a38;
         font-family: Georgia, "Times New Roman", serif;
         font-style: italic;
@@ -325,7 +330,7 @@ st.markdown(
             grid-template-columns: 1fr;
         }
 
-        .service-grid, .locations, .article-grid {
+        .service-grid, .location-grid, .article-grid {
             grid-template-columns: 1fr;
         }
 
@@ -347,6 +352,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+# Topo
 st.markdown(
     """
     <div class="topbar">
@@ -364,6 +370,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+# Hero
 st.markdown(
     """
     <div class="hero">
@@ -374,7 +381,7 @@ st.markdown(
                 Consultas, procedimentos e cirurgia periocular com uma abordagem médica personalizada,
                 discreta e focada na saúde, função e harmonia do olhar.
             </div>
-            <div class="button-row">
+            <div>
                 <span class="primary-button">Marcar Consulta</span>
                 <span class="secondary-button">Conhecer Serviços</span>
             </div>
@@ -393,6 +400,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+# Serviços principais
 st.markdown(
     """
     <div class="section">
@@ -441,6 +449,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+# Sobre
 st.markdown(
     """
     <div class="section">
@@ -471,6 +480,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+# Outros tratamentos
 st.markdown(
     """
     <div class="section">
@@ -481,25 +491,34 @@ st.markdown(
             <div class="service-card">
                 <div class="number">05</div>
                 <h3>Entrópio e Ectrópio</h3>
-                <p>Correção de alterações da posição das pálpebras que podem causar irritação, desconforto ou lacrimejo.</p>
+                <p>
+                Correção de alterações da posição das pálpebras que podem causar irritação,
+                desconforto ocular ou lacrimejo.
+                </p>
             </div>
 
             <div class="service-card">
                 <div class="number">06</div>
                 <h3>Lesões Palpebrais</h3>
-                <p>Avaliação, acompanhamento e eventual remoção de lesões localizadas nas pálpebras.</p>
+                <p>
+                Avaliação, acompanhamento e eventual remoção de lesões localizadas nas pálpebras.
+                </p>
             </div>
 
             <div class="service-card">
                 <div class="number">07</div>
                 <h3>Órbita</h3>
-                <p>Avaliação médica de alterações orbitárias e da região em redor do olho.</p>
+                <p>
+                Avaliação médica de alterações orbitárias e da região em redor do olho.
+                </p>
             </div>
 
             <div class="service-card">
                 <div class="number">08</div>
                 <h3>Estética Periocular</h3>
-                <p>Abordagem médica da estética do olhar, respeitando a anatomia e a naturalidade facial.</p>
+                <p>
+                Abordagem médica da estética do olhar, respeitando a anatomia e a naturalidade facial.
+                </p>
             </div>
         </div>
     </div>
@@ -507,13 +526,14 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+# Localizações
 st.markdown(
     """
     <div class="section">
         <div class="section-label">Onde estamos</div>
         <div class="section-title">Localizações</div>
 
-        <div class="locations">
+        <div class="location-grid">
             <div class="location-card">
                 <h3>Lisboa</h3>
                 <p>Consulta de Oculoplástica</p>
@@ -537,6 +557,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+# Artigos
 st.markdown(
     """
     <div class="section">
@@ -547,19 +568,26 @@ st.markdown(
             <div class="article-card">
                 <div class="date">Informação Clínica</div>
                 <h3>O que é a Oculoplástica?</h3>
-                <p>Uma área da oftalmologia dedicada às pálpebras, vias lacrimais, órbita e região periocular.</p>
+                <p>
+                Uma área da oftalmologia dedicada às pálpebras, vias lacrimais,
+                órbita e região periocular.
+                </p>
             </div>
 
             <div class="article-card">
                 <div class="date">Tratamentos</div>
                 <h3>Blefaroplastia</h3>
-                <p>Quando pode ser funcional, estética ou uma combinação das duas abordagens.</p>
+                <p>
+                Quando pode ser funcional, estética ou uma combinação das duas abordagens.
+                </p>
             </div>
 
             <div class="article-card">
                 <div class="date">Sintomas</div>
                 <h3>Lacrimejo persistente</h3>
-                <p>Quando o lacrimejo pode estar relacionado com alterações das vias lacrimais.</p>
+                <p>
+                Quando o lacrimejo pode estar relacionado com alterações das vias lacrimais.
+                </p>
             </div>
         </div>
     </div>
@@ -567,6 +595,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+# Contacto
 st.markdown(
     """
     <div class="section">
@@ -577,7 +606,9 @@ st.markdown(
             ou estética periocular.
             </p>
             <br>
-            <span class="primary-button" style="background:white;color:#062f3a;">Contactar a Blink Clinic</span>
+            <span class="primary-button" style="background:white;color:#062f3a;">
+                Contactar a Blink Clinic
+            </span>
         </div>
     </div>
 
