@@ -8,7 +8,7 @@ st.set_page_config(
 )
 
 # -------------------------
-# Função para mostrar imagem
+# IMAGENS
 # -------------------------
 def mostrar_imagem(nome, legenda=""):
     if os.path.exists(nome):
@@ -18,7 +18,7 @@ def mostrar_imagem(nome, legenda=""):
 
 
 # -------------------------
-# Estilo visual
+# ESTILO
 # -------------------------
 st.markdown(
     """
@@ -96,12 +96,32 @@ st.markdown(
     }
 
     .note {
-        background: rgba(255, 255, 255, 0.80);
+        background: rgba(255, 255, 255, 0.82);
         border-left: 5px solid #b1843f;
         padding: 18px 22px;
         border-radius: 16px;
         margin-top: 18px;
         box-shadow: 0 8px 22px rgba(90, 65, 30, 0.08);
+    }
+
+    .service-card {
+        background: rgba(255, 255, 255, 0.86);
+        border: 1px solid rgba(177, 132, 63, 0.30);
+        border-radius: 22px;
+        padding: 22px;
+        margin-bottom: 18px;
+        box-shadow: 0 8px 22px rgba(90, 65, 30, 0.08);
+        min-height: 210px;
+    }
+
+    .service-card h3 {
+        margin-top: 0;
+        color: #062f3a;
+    }
+
+    .service-card p {
+        color: #34484d;
+        line-height: 1.65;
     }
 
     img {
@@ -139,8 +159,9 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+
 # -------------------------
-# Menu
+# MENU
 # -------------------------
 st.sidebar.title("BLINK CLINIC")
 st.sidebar.caption("Oculoplástica · Saúde e estética do olhar")
@@ -149,15 +170,17 @@ pagina = st.sidebar.radio(
     "Menu",
     [
         "Início",
+        "O que é Oculoplástica",
         "Serviços",
         "Galeria",
-        "Sobre",
+        "Informação Clínica",
         "Contactos"
     ]
 )
 
+
 # -------------------------
-# Cabeçalho
+# CABEÇALHO
 # -------------------------
 st.markdown('<div class="brand-title">BLINK CLINIC</div>', unsafe_allow_html=True)
 st.markdown(
@@ -166,8 +189,9 @@ st.markdown(
 )
 st.markdown('<div class="gold-line"></div>', unsafe_allow_html=True)
 
+
 # -------------------------
-# Página Início
+# INÍCIO
 # -------------------------
 if pagina == "Início":
     col1, col2 = st.columns([1.15, 0.85])
@@ -182,15 +206,15 @@ if pagina == "Início":
 
         st.write(
             """
-            A Blink Clinic dedica-se à avaliação e tratamento das alterações das pálpebras,
-            vias lacrimais, órbita e região periocular.
+            A Blink Clinic dedica-se à avaliação e tratamento das estruturas perioculares:
+            pálpebras, vias lacrimais, órbita e região envolvente do olho.
             """
         )
 
         st.write(
             """
-            Uma abordagem médica, segura e personalizada, com foco na função,
-            naturalidade e harmonia do olhar.
+            A abordagem combina rigor médico, segurança clínica, naturalidade estética
+            e atenção à função visual.
             """
         )
 
@@ -199,8 +223,8 @@ if pagina == "Início":
         st.markdown(
             """
             <div class="note">
-            Cuidado especializado em blefaroplastia, ptose palpebral,
-            vias lacrimais, lesões palpebrais e estética periocular.
+            Cuidado especializado em blefaroplastia, ptose palpebral, entrópio,
+            ectrópio, vias lacrimais, lesões palpebrais, órbita e estética periocular.
             </div>
             """,
             unsafe_allow_html=True
@@ -214,15 +238,21 @@ if pagina == "Início":
 
     st.markdown('<div class="gold-line"></div>', unsafe_allow_html=True)
 
+    st.markdown(
+        '<div class="section-label">Áreas principais</div>',
+        unsafe_allow_html=True
+    )
+    st.header("Cuidado especializado do olhar")
+
     c1, c2, c3 = st.columns(3)
 
     with c1:
         mostrar_imagem("blefaroplastia.png", "Blefaroplastia")
-        st.subheader("Blefaroplastia")
+        st.subheader("Pálpebras")
         st.write(
             """
-            Cirurgia das pálpebras superiores e/ou inferiores, com objetivo funcional,
-            estético ou combinado.
+            Tratamento de excesso de pele, bolsas palpebrais, ptose,
+            entrópio, ectrópio e lesões das pálpebras.
             """
         )
 
@@ -232,7 +262,7 @@ if pagina == "Início":
         st.write(
             """
             Avaliação de lacrimejo persistente, obstruções e alterações
-            do sistema lacrimal.
+            da drenagem lacrimal.
             """
         )
 
@@ -241,13 +271,92 @@ if pagina == "Início":
         st.subheader("Ptose palpebral")
         st.write(
             """
-            Avaliação da queda da pálpebra superior e do seu impacto funcional
-            ou estético.
+            Avaliação da queda da pálpebra superior e do impacto na visão,
+            expressão facial e simetria do olhar.
             """
         )
 
+
 # -------------------------
-# Página Serviços
+# O QUE É OCULOPLÁSTICA
+# -------------------------
+elif pagina == "O que é Oculoplástica":
+    col1, col2 = st.columns([0.95, 1.05])
+
+    with col1:
+        mostrar_imagem("oculoplastica.png", "Oculoplástica")
+
+    with col2:
+        st.markdown(
+            '<div class="section-label">Especialidade</div>',
+            unsafe_allow_html=True
+        )
+        st.header("O que é a Oculoplástica?")
+
+        st.write(
+            """
+            A oculoplástica é uma área da oftalmologia dedicada ao diagnóstico
+            e tratamento das estruturas que rodeiam e protegem o olho.
+            """
+        )
+
+        st.write(
+            """
+            Inclui alterações das pálpebras, da órbita, das vias lacrimais
+            e da região periocular. Pode ter objetivos funcionais, estéticos
+            ou uma combinação dos dois.
+            """
+        )
+
+        st.markdown(
+            """
+            <div class="note">
+            A região periocular é delicada: protege o olho, participa na lubrificação,
+            contribui para a qualidade da visão e tem grande impacto na expressão facial.
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+    st.markdown('<div class="gold-line"></div>', unsafe_allow_html=True)
+
+    st.header("Estruturas tratadas")
+
+    e1, e2, e3 = st.columns(3)
+
+    with e1:
+        with st.container(border=True):
+            st.subheader("Pálpebras")
+            st.write(
+                """
+                Protegem o olho, ajudam na distribuição da lágrima e podem sofrer alterações
+                de posição, excesso de pele, queda ou lesões.
+                """
+            )
+
+    with e2:
+        with st.container(border=True):
+            st.subheader("Órbita")
+            st.write(
+                """
+                Cavidade óssea que envolve o globo ocular e contém gordura, músculos,
+                vasos, nervos e estruturas anexas.
+                """
+            )
+
+    with e3:
+        with st.container(border=True):
+            st.subheader("Vias lacrimais")
+            st.write(
+                """
+                Sistema responsável pela produção, distribuição e drenagem da lágrima.
+                Alterações podem provocar lacrimejo ou infeções.
+                """
+            )
+
+
+# -------------------------
+# SERVIÇOS
 # -------------------------
 elif pagina == "Serviços":
     st.markdown(
@@ -261,11 +370,12 @@ elif pagina == "Serviços":
     with col1:
         with st.container(border=True):
             mostrar_imagem("blefaroplastia.png", "Blefaroplastia")
-            st.subheader("Blefaroplastia")
+            st.subheader("Blefaroplastia superior e inferior")
             st.write(
                 """
-                A blefaroplastia é uma cirurgia das pálpebras superiores e/ou inferiores.
-                Pode ter finalidade funcional, estética ou ambas, dependendo da avaliação médica.
+                Tratamento cirúrgico do excesso de pele nas pálpebras superiores
+                e/ou das bolsas das pálpebras inferiores. Pode ter finalidade estética,
+                funcional ou ambas.
                 """
             )
 
@@ -274,38 +384,57 @@ elif pagina == "Serviços":
             st.subheader("Ptose palpebral")
             st.write(
                 """
-                A ptose palpebral corresponde à queda da pálpebra superior.
-                Pode interferir com a visão, a simetria facial e a expressão do olhar.
+                Correção da queda da pálpebra superior quando esta interfere com a visão,
+                a simetria facial ou dá uma expressão persistente de cansaço.
                 """
             )
 
         with st.container(border=True):
-            st.subheader("Entrópio e Ectrópio")
+            st.subheader("Entrópio")
             st.write(
                 """
-                Correção de alterações da posição das pálpebras, que podem causar
-                irritação ocular, lacrimejo, desconforto ou exposição da superfície ocular.
+                Alteração em que a pálpebra vira para dentro, fazendo com que as pestanas
+                toquem no olho. Pode causar irritação, sensação de corpo estranho,
+                lacrimejo e desconforto ocular.
+                """
+            )
+
+        with st.container(border=True):
+            st.subheader("Ectrópio")
+            st.write(
+                """
+                Alteração em que a pálpebra vira para fora, podendo causar lacrimejo,
+                irritação, secreção e exposição da superfície ocular.
                 """
             )
 
     with col2:
         with st.container(border=True):
             mostrar_imagem("vias_lacrimais.png", "Vias lacrimais")
-            st.subheader("Vias lacrimais")
+            st.subheader("Vias lacrimais e epífora")
             st.write(
                 """
-                Avaliação de lacrimejo persistente, obstruções lacrimais e alterações
-                associadas à drenagem da lágrima.
+                Avaliação de lacrimejo excessivo, obstruções dos pontos lacrimais,
+                canalículos, saco lacrimal ou ducto nasolacrimal.
                 """
             )
 
         with st.container(border=True):
-            mostrar_imagem("oculoplastica.png", "Oculoplástica")
-            st.subheader("Lesões palpebrais")
+            mostrar_imagem("oculoplastica.png", "Lesões palpebrais")
+            st.subheader("Lesões e tumores palpebrais")
             st.write(
                 """
                 Observação, diagnóstico, acompanhamento e eventual remoção de lesões
-                localizadas nas pálpebras.
+                benignas ou suspeitas localizadas nas pálpebras.
+                """
+            )
+
+        with st.container(border=True):
+            st.subheader("Xantelasmas")
+            st.write(
+                """
+                Lesões amareladas ou placas de gordura que surgem frequentemente
+                junto às pálpebras. A abordagem depende da avaliação clínica individual.
                 """
             )
 
@@ -314,8 +443,44 @@ elif pagina == "Serviços":
             st.subheader("Estética periocular")
             st.write(
                 """
-                Abordagem médica da estética do olhar, respeitando a anatomia,
+                Tratamentos focados na harmonia do olhar, respeitando a anatomia,
                 a função palpebral e a naturalidade facial.
+                """
+            )
+
+    st.markdown('<div class="gold-line"></div>', unsafe_allow_html=True)
+
+    st.header("Órbita e condições associadas")
+
+    o1, o2, o3 = st.columns(3)
+
+    with o1:
+        with st.container(border=True):
+            st.subheader("Orbitopatia tiroideia")
+            st.write(
+                """
+                Alteração orbitária associada a doença tiroideia autoimune.
+                Pode provocar protrusão ocular, alterações palpebrais e desconforto.
+                """
+            )
+
+    with o2:
+        with st.container(border=True):
+            st.subheader("Traumatismos orbitários")
+            st.write(
+                """
+                Avaliação de sequelas após traumatismos, fraturas orbitárias
+                ou alterações da posição ocular.
+                """
+            )
+
+    with o3:
+        with st.container(border=True):
+            st.subheader("Ptose da sobrancelha")
+            st.write(
+                """
+                Descida da sobrancelha que pode contribuir para excesso de pele
+                palpebral e sensação de peso no olhar.
                 """
             )
 
@@ -323,14 +488,15 @@ elif pagina == "Serviços":
         """
         <div class="note">
         Todos os procedimentos dependem de avaliação médica individual.
-        A informação apresentada é geral e não substitui uma consulta.
+        Esta informação é geral e não substitui uma consulta de oftalmologia/oculoplástica.
         </div>
         """,
         unsafe_allow_html=True
     )
 
+
 # -------------------------
-# Página Galeria
+# GALERIA
 # -------------------------
 elif pagina == "Galeria":
     st.markdown(
@@ -352,52 +518,88 @@ elif pagina == "Galeria":
     with g3:
         mostrar_imagem("estetica_periocular.png", "Estética periocular")
 
+
 # -------------------------
-# Página Sobre
+# INFORMAÇÃO CLÍNICA
 # -------------------------
-elif pagina == "Sobre":
-    col1, col2 = st.columns([0.9, 1.1])
+elif pagina == "Informação Clínica":
+    st.markdown(
+        '<div class="section-label">Educação do paciente</div>',
+        unsafe_allow_html=True
+    )
+    st.header("Informação Clínica")
 
-    with col1:
-        mostrar_imagem(
-            "oculoplastica.png",
-            "Blink Clinic · Oculoplástica"
-        )
+    a1, a2, a3 = st.columns(3)
 
-    with col2:
-        st.markdown(
-            '<div class="section-label">Sobre a clínica</div>',
-            unsafe_allow_html=True
-        )
+    with a1:
+        with st.container(border=True):
+            st.subheader("Quando procurar avaliação?")
+            st.write(
+                """
+                Quando há queda das pálpebras, excesso de pele, lacrimejo,
+                irritação ocular, lesões palpebrais, assimetria ou alterações do olhar.
+                """
+            )
 
-        st.header("Cuidar do olhar com precisão e naturalidade")
+    with a2:
+        with st.container(border=True):
+            st.subheader("O que pode afetar as pálpebras?")
+            st.write(
+                """
+                Excesso de pele, bolsas, ptose, entrópio, ectrópio, retração palpebral,
+                xantelasmas, inflamação e lesões palpebrais.
+                """
+            )
 
+    with a3:
+        with st.container(border=True):
+            st.subheader("O que pode afetar as vias lacrimais?")
+            st.write(
+                """
+                Alterações na produção, distribuição ou drenagem da lágrima,
+                podendo causar lacrimejo persistente, infeções ou desconforto.
+                """
+            )
+
+    st.markdown('<div class="gold-line"></div>', unsafe_allow_html=True)
+
+    st.header("Perguntas frequentes")
+
+    with st.expander("A blefaroplastia é estética ou funcional?"):
         st.write(
             """
-            A Blink Clinic nasce com uma visão clara: oferecer cuidados diferenciados
-            em oculoplástica, integrando conhecimento oftalmológico, sensibilidade
-            estética e atenção às necessidades individuais de cada paciente.
+            Pode ser estética, funcional ou ambas. Em alguns casos, o excesso de pele
+            interfere com o campo visual ou causa sensação de peso nas pálpebras.
             """
         )
 
-        st.write("• Avaliação individualizada")
-        st.write("• Abordagem funcional e estética")
-        st.write("• Resultados naturais e discretos")
-        st.write("• Comunicação clara com o paciente")
-        st.write("• Planeamento terapêutico personalizado")
-
-        st.markdown(
+    with st.expander("A ptose palpebral pode afetar a visão?"):
+        st.write(
             """
-            <div class="note">
-            A região periocular é delicada e expressiva. Por isso, cada tratamento
-            deve respeitar a anatomia, a função ocular e a identidade facial.
-            </div>
-            """,
-            unsafe_allow_html=True
+            Sim. Quando a pálpebra superior está caída, pode obstruir parcialmente
+            o campo visual e causar compensações como elevação das sobrancelhas.
+            """
         )
+
+    with st.expander("O lacrimejo persistente tem tratamento?"):
+        st.write(
+            """
+            Depende da causa. Pode estar relacionado com inflamação, olho seco,
+            alterações palpebrais ou obstrução das vias lacrimais.
+            """
+        )
+
+    with st.expander("Lesões nas pálpebras devem ser avaliadas?"):
+        st.write(
+            """
+            Sim. Algumas lesões são benignas, mas outras exigem diagnóstico e seguimento.
+            A avaliação médica é importante para decidir a melhor abordagem.
+            """
+        )
+
 
 # -------------------------
-# Página Contactos
+# CONTACTOS
 # -------------------------
 elif pagina == "Contactos":
     st.markdown(
@@ -418,8 +620,10 @@ elif pagina == "Contactos":
                     "Consulta de Oculoplástica",
                     "Blefaroplastia",
                     "Ptose palpebral",
+                    "Entrópio / Ectrópio",
                     "Vias lacrimais",
                     "Lesão palpebral",
+                    "Xantelasma",
                     "Estética periocular",
                     "Outro"
                 ]
@@ -438,6 +642,7 @@ elif pagina == "Contactos":
             st.write("Pálpebras · Vias lacrimais · Órbita")
             st.write("Contacto: a definir")
             st.write("Localização: a definir")
+
 
 st.markdown('<div class="gold-line"></div>', unsafe_allow_html=True)
 st.markdown(
