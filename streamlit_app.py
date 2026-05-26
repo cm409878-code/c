@@ -24,6 +24,13 @@ st.markdown(
         color: white !important;
     }
 
+    .block-container {
+        padding-top: 1.8rem;
+        padding-left: 3.5rem;
+        padding-right: 3.5rem;
+        max-width: 1450px;
+    }
+
     h1, h2, h3 {
         font-family: Georgia, "Times New Roman", serif;
         color: #062f3a;
@@ -32,18 +39,29 @@ st.markdown(
     .titulo {
         text-align: center;
         font-family: Georgia, "Times New Roman", serif;
-        font-size: 64px;
+        font-size: 66px;
         letter-spacing: 8px;
         color: #062f3a;
         margin-bottom: 0;
+        line-height: 1;
+    }
+
+    .frase-chave {
+        text-align: center;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 27px;
+        color: #b1843f;
+        font-style: italic;
+        margin-top: 12px;
+        margin-bottom: 4px;
     }
 
     .subtitulo {
         text-align: center;
         font-family: Georgia, "Times New Roman", serif;
-        font-size: 24px;
-        color: #b1843f;
-        font-style: italic;
+        font-size: 19px;
+        color: #6f5a34;
+        letter-spacing: 2px;
         margin-top: 0;
     }
 
@@ -76,6 +94,24 @@ st.markdown(
         padding: 18px 22px;
         border-radius: 16px;
         margin-top: 18px;
+        color: #34484d;
+        line-height: 1.6;
+    }
+
+    .servico-titulo {
+        text-align: center;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 23px;
+        color: #062f3a;
+        margin-top: 12px;
+        margin-bottom: 8px;
+    }
+
+    .servico-texto {
+        text-align: center;
+        color: #34484d;
+        line-height: 1.55;
+        font-size: 15.5px;
     }
 
     div.stButton > button {
@@ -100,6 +136,26 @@ st.markdown(
         font-size: 20px;
         font-style: italic;
         margin-top: 40px;
+    }
+
+    @media (max-width: 900px) {
+        .titulo {
+            font-size: 42px;
+            letter-spacing: 4px;
+        }
+
+        .frase-chave {
+            font-size: 21px;
+        }
+
+        .subtitulo {
+            font-size: 15px;
+        }
+
+        .block-container {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
     }
     </style>
     """,
@@ -204,6 +260,40 @@ def imagem_ptose():
     """
 
 
+def imagem_estetica():
+    return """
+    <div style="background:#fffaf2;border:1px solid #d6b36a;border-radius:24px;padding:10px;box-shadow:0 10px 26px rgba(90,65,30,0.12);">
+    <svg viewBox="0 0 900 520" width="100%" height="270" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <radialGradient id="irisE" cx="50%" cy="50%" r="50%">
+                <stop offset="0" stop-color="#e5f2f2"/>
+                <stop offset="0.45" stop-color="#579ba2"/>
+                <stop offset="1" stop-color="#143d47"/>
+            </radialGradient>
+        </defs>
+        <rect width="900" height="520" fill="#fff2e5"/>
+        <ellipse cx="310" cy="250" rx="175" ry="125" fill="#f0c4a6"/>
+        <ellipse cx="590" cy="250" rx="175" ry="125" fill="#f0c4a6"/>
+        <path d="M150 255 C220 175, 400 175, 470 255 C400 335, 220 335, 150 255 Z"
+              fill="white" stroke="#102c36" stroke-width="7"/>
+        <path d="M430 255 C500 175, 680 175, 750 255 C680 335, 500 335, 430 255 Z"
+              fill="white" stroke="#102c36" stroke-width="7"/>
+        <circle cx="310" cy="255" r="54" fill="url(#irisE)" stroke="#102c36" stroke-width="5"/>
+        <circle cx="590" cy="255" r="54" fill="url(#irisE)" stroke="#102c36" stroke-width="5"/>
+        <circle cx="310" cy="255" r="24" fill="#0b2f3a"/>
+        <circle cx="590" cy="255" r="24" fill="#0b2f3a"/>
+        <circle cx="288" cy="230" r="10" fill="white"/>
+        <circle cx="568" cy="230" r="10" fill="white"/>
+        <path d="M185 160 C250 110, 375 110, 440 160"
+              fill="none" stroke="#5b321a" stroke-width="18" stroke-linecap="round"/>
+        <path d="M465 160 C530 110, 655 110, 720 160"
+              fill="none" stroke="#5b321a" stroke-width="18" stroke-linecap="round"/>
+        <text x="450" y="480" text-anchor="middle" font-family="Georgia" font-size="30" fill="#8a6a38">Estética periocular</text>
+    </svg>
+    </div>
+    """
+
+
 # ---------- MENU ----------
 st.sidebar.title("BLINK CLINIC")
 st.sidebar.caption("Oculoplástica · Saúde e estética do olhar")
@@ -214,13 +304,22 @@ pagina = st.sidebar.radio(
         "Início",
         "Serviços",
         "Galeria",
-        "Marcar Consulta"
+        "Informação Clínica",
+        "Marcar Consulta",
+        "Contactos"
     ]
 )
 
 # ---------- CABEÇALHO ----------
 st.markdown('<div class="titulo">BLINK CLINIC</div>', unsafe_allow_html=True)
-st.markdown('<div class="subtitulo">Oculoplástica · Pálpebras · Vias Lacrimais · Órbita</div>', unsafe_allow_html=True)
+st.markdown(
+    '<div class="frase-chave">A arte de cuidar do olhar com precisão, segurança e naturalidade.</div>',
+    unsafe_allow_html=True
+)
+st.markdown(
+    '<div class="subtitulo">Oculoplástica · Pálpebras · Vias Lacrimais · Órbita</div>',
+    unsafe_allow_html=True
+)
 st.markdown('<div class="linha"></div>', unsafe_allow_html=True)
 
 # ---------- PÁGINAS ----------
@@ -263,18 +362,27 @@ if pagina == "Início":
 
     with c1:
         mostrar_svg(imagem_blefaroplastia(), 290)
-        st.subheader("Blefaroplastia")
-        st.write("Cirurgia das pálpebras superiores e/ou inferiores.")
+        st.markdown('<div class="servico-titulo">Blefaroplastia</div>', unsafe_allow_html=True)
+        st.markdown(
+            '<div class="servico-texto">Cirurgia das pálpebras superiores e/ou inferiores.</div>',
+            unsafe_allow_html=True
+        )
 
     with c2:
         mostrar_svg(imagem_vias(), 290)
-        st.subheader("Vias lacrimais")
-        st.write("Avaliação de lacrimejo persistente e obstruções lacrimais.")
+        st.markdown('<div class="servico-titulo">Vias lacrimais</div>', unsafe_allow_html=True)
+        st.markdown(
+            '<div class="servico-texto">Avaliação de lacrimejo persistente e obstruções lacrimais.</div>',
+            unsafe_allow_html=True
+        )
 
     with c3:
         mostrar_svg(imagem_ptose(), 290)
-        st.subheader("Ptose palpebral")
-        st.write("Avaliação da queda da pálpebra superior.")
+        st.markdown('<div class="servico-titulo">Ptose palpebral</div>', unsafe_allow_html=True)
+        st.markdown(
+            '<div class="servico-texto">Avaliação da queda da pálpebra superior.</div>',
+            unsafe_allow_html=True
+        )
 
 elif pagina == "Serviços":
     st.header("Serviços de Oculoplástica")
@@ -292,6 +400,10 @@ elif pagina == "Serviços":
             st.subheader("Ptose palpebral")
             st.write("Correção da queda da pálpebra superior.")
 
+        with st.container(border=True):
+            st.subheader("Entrópio e Ectrópio")
+            st.write("Correção de alterações da posição das pálpebras.")
+
     with col2:
         with st.container(border=True):
             mostrar_svg(imagem_vias())
@@ -299,8 +411,13 @@ elif pagina == "Serviços":
             st.write("Avaliação de lacrimejo persistente e alterações da drenagem lacrimal.")
 
         with st.container(border=True):
+            mostrar_svg(imagem_estetica())
             st.subheader("Estética periocular")
             st.write("Tratamentos focados na harmonia do olhar, respeitando anatomia e naturalidade.")
+
+        with st.container(border=True):
+            st.subheader("Lesões palpebrais")
+            st.write("Avaliação, diagnóstico e eventual remoção de lesões localizadas nas pálpebras.")
 
 elif pagina == "Galeria":
     st.header("Galeria visual")
@@ -313,7 +430,27 @@ elif pagina == "Galeria":
 
     with g2:
         mostrar_svg(imagem_ptose())
-        mostrar_svg(imagem_blefaroplastia())
+        mostrar_svg(imagem_estetica())
+
+elif pagina == "Informação Clínica":
+    st.header("Informação Clínica")
+
+    a1, a2, a3 = st.columns(3)
+
+    with a1:
+        with st.container(border=True):
+            st.subheader("Quando procurar avaliação?")
+            st.write("Queda das pálpebras, excesso de pele, lacrimejo, irritação ocular ou alterações do olhar.")
+
+    with a2:
+        with st.container(border=True):
+            st.subheader("O que pode afetar as pálpebras?")
+            st.write("Ptose, excesso de pele, bolsas, entrópio, ectrópio e lesões palpebrais.")
+
+    with a3:
+        with st.container(border=True):
+            st.subheader("E as vias lacrimais?")
+            st.write("Alterações na drenagem da lágrima podem causar lacrimejo persistente.")
 
 elif pagina == "Marcar Consulta":
     st.header("Marcar Consulta")
@@ -341,6 +478,22 @@ elif pagina == "Marcar Consulta":
 
     with col2:
         mostrar_svg(imagem_blefaroplastia())
+
+elif pagina == "Contactos":
+    st.header("Contactos")
+
+    col1, col2 = st.columns([1, 1])
+
+    with col1:
+        st.subheader("Blink Clinic")
+        st.write("Oculoplástica")
+        st.write("Pálpebras · Vias lacrimais · Órbita")
+        st.write("Telefone: a definir")
+        st.write("Email: a definir")
+        st.write("Morada: a definir")
+
+    with col2:
+        mostrar_svg(imagem_estetica())
 
 st.markdown('<div class="linha"></div>', unsafe_allow_html=True)
 st.markdown(
