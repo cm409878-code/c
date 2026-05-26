@@ -6,12 +6,13 @@ st.set_page_config(
     layout="wide"
 )
 
-# Fotografias / imagens reais por link público
+# FOTOGRAFIAS / IMAGENS REAIS POR LINK
 IMG_HERO = "https://commons.wikimedia.org/wiki/Special:FilePath/Eyelid%20surgery%20outline.jpg"
-IMG_BLEFARO = "https://commons.wikimedia.org/wiki/Special:FilePath/Lower%20Eyelid%20Blepharoplasty.jpg"
+IMG_BLEFARO = "https://eyewiki.org/w/images/thumb/9/9f/Lower_blepharoplasty_pre_post.jpg/700px-Lower_blepharoplasty_pre_post.jpg"
 IMG_PTOSE = "https://commons.wikimedia.org/wiki/Special:FilePath/Congenitalptosis.JPG"
+IMG_PTOSE_ANTES_DEPOIS = "https://www.oculofacialsociety.org/wp-content/uploads/2020/06/ptosis-correction-before-after.jpg"
 IMG_VIAS = "https://commons.wikimedia.org/wiki/Special:FilePath/Tear%20system.svg"
-IMG_OCULOPLASTICA = "https://commons.wikimedia.org/wiki/Special:FilePath/Dr%20Kami%20Parsa%20Revisional%20Eyelid%20Surgery%2001.jpg"
+IMG_OCULOPLASTICA = "https://commons.wikimedia.org/wiki/Special:FilePath/Upper%20eyelid%20blepharoplasty%20incision.png"
 
 st.markdown(
     """
@@ -324,7 +325,7 @@ if pagina == "Início":
 
     with c3:
         st.markdown('<div class="section-heading">PTOSE PALPEBRAL</div>', unsafe_allow_html=True)
-        st.image(IMG_PTOSE, caption="Ptose palpebral", use_container_width=True)
+        st.image(IMG_PTOSE_ANTES_DEPOIS, caption="Ptose palpebral", use_container_width=True)
         st.markdown(
             """
             <div class="service-text">
@@ -376,7 +377,7 @@ elif pagina == "Serviços":
             """
         )
 
-        st.image(IMG_OCULOPLASTICA, caption="Cirurgia palpebral / oculoplástica", use_container_width=True)
+        st.image(IMG_OCULOPLASTICA, caption="Oculoplástica", use_container_width=True)
         st.subheader("Estética periocular")
         st.write(
             """
@@ -418,7 +419,7 @@ elif pagina == "Galeria":
 
     with g2:
         st.image(IMG_BLEFARO, caption="Blefaroplastia", use_container_width=True)
-        st.image(IMG_PTOSE, caption="Ptose palpebral", use_container_width=True)
+        st.image(IMG_PTOSE_ANTES_DEPOIS, caption="Ptose palpebral", use_container_width=True)
 
 elif pagina == "Informação Clínica":
     st.header("Informação Clínica")
