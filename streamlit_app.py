@@ -79,23 +79,38 @@ st.markdown(
         font-size: 13px;
     }
 
-    .caixa {
-        background: rgba(255,255,255,0.82);
-        border: 1px solid rgba(177,132,63,0.35);
-        border-radius: 24px;
-        padding: 24px;
-        box-shadow: 0 12px 28px rgba(90,65,30,0.10);
-        margin-bottom: 20px;
-    }
-
     .nota {
-        background: rgba(255,255,255,0.80);
+        background: rgba(255,255,255,0.84);
         border-left: 5px solid #b1843f;
         padding: 18px 22px;
         border-radius: 16px;
         margin-top: 18px;
         color: #34484d;
         line-height: 1.6;
+        box-shadow: 0 8px 22px rgba(90,65,30,0.08);
+    }
+
+    .gratis-box {
+        background: linear-gradient(135deg, #062f3a, #0e4b58);
+        color: white;
+        border-radius: 22px;
+        padding: 22px 26px;
+        margin: 22px 0;
+        border: 1px solid rgba(177,132,63,0.55);
+        box-shadow: 0 16px 34px rgba(6,47,58,0.18);
+    }
+
+    .gratis-box h3 {
+        color: #d8b76d;
+        margin-top: 0;
+        font-size: 26px;
+    }
+
+    .gratis-box p {
+        color: #f8eedc;
+        font-size: 17px;
+        line-height: 1.55;
+        margin-bottom: 0;
     }
 
     .servico-titulo {
@@ -341,7 +356,20 @@ if pagina == "Início":
             naturalidade e harmonia do olhar.
             """
         )
-        st.button("Marcar Consulta")
+        st.button("Marcar Avaliação Gratuita")
+
+        st.markdown(
+            """
+            <div class="gratis-box">
+                <h3>Primeira avaliação gratuita</h3>
+                <p>
+                    Marca a tua primeira avaliação para conheceres a abordagem mais adequada
+                    para o teu caso, sem compromisso inicial.
+                </p>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
 
         st.markdown(
             """
@@ -453,7 +481,20 @@ elif pagina == "Informação Clínica":
             st.write("Alterações na drenagem da lágrima podem causar lacrimejo persistente.")
 
 elif pagina == "Marcar Consulta":
-    st.header("Marcar Consulta")
+    st.header("Marcar Avaliação Gratuita")
+
+    st.markdown(
+        """
+        <div class="gratis-box">
+            <h3>Primeira avaliação gratuita</h3>
+            <p>
+                Preenche o formulário para pedir a tua primeira avaliação.
+                Esta etapa serve para perceber o motivo da consulta e orientar o próximo passo.
+            </p>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
     col1, col2 = st.columns([1, 1])
 
@@ -461,7 +502,7 @@ elif pagina == "Marcar Consulta":
         nome = st.text_input("Nome")
         contacto = st.text_input("Contacto")
         motivo = st.selectbox(
-            "Motivo da consulta",
+            "Motivo da avaliação",
             [
                 "Consulta de Oculoplástica",
                 "Blefaroplastia",
@@ -473,7 +514,7 @@ elif pagina == "Marcar Consulta":
         )
         mensagem = st.text_area("Mensagem")
 
-        if st.button("Enviar pedido"):
+        if st.button("Enviar pedido de avaliação gratuita"):
             st.success("Pedido registado. Esta versão ainda não envia emails automaticamente.")
 
     with col2:
@@ -488,6 +529,7 @@ elif pagina == "Contactos":
         st.subheader("Blink Clinic")
         st.write("Oculoplástica")
         st.write("Pálpebras · Vias lacrimais · Órbita")
+        st.write("Primeira avaliação: gratuita")
         st.write("Telefone: a definir")
         st.write("Email: a definir")
         st.write("Morada: a definir")
