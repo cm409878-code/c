@@ -6,6 +6,9 @@ st.set_page_config(
     layout="wide"
 )
 
+# =========================
+# ESTILO VISUAL
+# =========================
 st.markdown(
     """
     <style>
@@ -81,6 +84,15 @@ st.markdown(
         font-size: 13px;
     }
 
+    .soft-note {
+        background: rgba(255, 255, 255, 0.7);
+        border-left: 4px solid #b1843f;
+        padding: 18px 22px;
+        border-radius: 14px;
+        color: #34484d;
+        margin-top: 18px;
+    }
+
     .footer {
         text-align: center;
         font-family: Georgia, "Times New Roman", serif;
@@ -89,21 +101,52 @@ st.markdown(
         font-style: italic;
         margin-top: 40px;
     }
+
+    img {
+        border-radius: 24px;
+    }
+
+    @media (max-width: 900px) {
+        .big-title {
+            font-size: 42px;
+            letter-spacing: 5px;
+        }
+
+        .subtitle {
+            font-size: 22px;
+        }
+
+        .block-container {
+            padding-left: 1.2rem;
+            padding-right: 1.2rem;
+        }
+    }
     </style>
     """,
     unsafe_allow_html=True
 )
 
-# Cabeçalho
+# =========================
+# CABEÇALHO
+# =========================
 st.markdown('<div class="big-title">BLINK CLINIC</div>', unsafe_allow_html=True)
-st.markdown('<div class="subtitle">Oculoplástica · Saúde e estética do olhar</div>', unsafe_allow_html=True)
+st.markdown(
+    '<div class="subtitle">Oculoplástica · Saúde e estética do olhar</div>',
+    unsafe_allow_html=True
+)
 st.markdown('<div class="gold-line"></div>', unsafe_allow_html=True)
 
-# Hero
-col1, col2 = st.columns([1.3, 0.7])
+# =========================
+# HERO
+# =========================
+col1, col2 = st.columns([1.25, 0.75])
 
 with col1:
-    st.markdown('<div class="section-label">Oculoplástica · Pálpebras · Vias Lacrimais</div>', unsafe_allow_html=True)
+    st.markdown(
+        '<div class="section-label">Oculoplástica · Pálpebras · Vias Lacrimais</div>',
+        unsafe_allow_html=True
+    )
+
     st.title("Oculoplástica com precisão e elegância")
 
     st.write(
@@ -119,9 +162,23 @@ with col1:
     with b2:
         st.button("Conhecer Serviços")
 
+    st.markdown(
+        """
+        <div class="soft-note">
+            Uma experiência clínica pensada para quem procura cuidado médico,
+            discrição, segurança e naturalidade.
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
 with col2:
+    st.image(
+        "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=900&q=80",
+        use_container_width=True
+    )
+
     with st.container(border=True):
-        st.markdown("## 👁️")
         st.subheader("Saúde e estética do olhar")
         st.write(
             """
@@ -132,21 +189,36 @@ with col2:
 
 st.markdown('<div class="gold-line"></div>', unsafe_allow_html=True)
 
-# Métricas / Destaques
+# =========================
+# MÉTRICAS
+# =========================
 m1, m2, m3 = st.columns(3)
 
 with m1:
-    st.metric("Área", "Oculoplástica")
+    st.metric("Especialidade", "Oculoplástica")
 
 with m2:
-    st.metric("Foco", "Pálpebras")
+    st.metric("Foco clínico", "Pálpebras")
 
 with m3:
     st.metric("Abordagem", "Premium")
 
-st.markdown("## Serviços de Oculoplástica")
+st.markdown('<div class="gold-line"></div>', unsafe_allow_html=True)
 
-# Serviços principais
+# =========================
+# SERVIÇOS
+# =========================
+st.markdown(
+    '<div class="section-label">O que fazemos</div>',
+    unsafe_allow_html=True
+)
+st.header("Serviços de Oculoplástica")
+
+st.image(
+    "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1400&q=80",
+    use_container_width=True
+)
+
 s1, s2, s3, s4 = st.columns(4)
 
 with s1:
@@ -195,19 +267,30 @@ with s4:
 
 st.markdown('<div class="gold-line"></div>', unsafe_allow_html=True)
 
-# Sobre
-col3, col4 = st.columns([0.8, 1.2])
+# =========================
+# SOBRE A CLÍNICA
+# =========================
+col3, col4 = st.columns([0.85, 1.15])
 
 with col3:
+    st.image(
+        "https://images.unsplash.com/photo-1580281657527-47f249e8f4df?auto=format&fit=crop&w=900&q=80",
+        use_container_width=True
+    )
+
     with st.container(border=True):
-        st.markdown("## ⚕️")
         st.header("Blink Clinic")
         st.write("Clínica de Oculoplástica")
         st.write("Pálpebras · Vias lacrimais · Órbita · Estética periocular")
 
 with col4:
-    st.markdown('<div class="section-label">Sobre a clínica</div>', unsafe_allow_html=True)
+    st.markdown(
+        '<div class="section-label">Sobre a clínica</div>',
+        unsafe_allow_html=True
+    )
+
     st.header("Cuidar do olhar com rigor médico")
+
     st.write(
         """
         A Blink Clinic é dedicada à avaliação e tratamento das alterações das pálpebras,
@@ -221,37 +304,93 @@ with col4:
     st.write("• Tratamento funcional e estético da região periocular")
     st.write("• Comunicação clara e acompanhamento cuidadoso")
 
+    st.markdown(
+        """
+        <div class="soft-note">
+            A missão da Blink Clinic é unir precisão médica, estética natural
+            e acompanhamento próximo em cada etapa do cuidado periocular.
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
 st.markdown('<div class="gold-line"></div>', unsafe_allow_html=True)
 
-# Outros tratamentos
-st.markdown("## Outros tratamentos")
+# =========================
+# OUTROS TRATAMENTOS
+# =========================
+st.markdown(
+    '<div class="section-label">Áreas clínicas</div>',
+    unsafe_allow_html=True
+)
+st.header("Outros tratamentos")
 
 t1, t2, t3, t4 = st.columns(4)
 
 with t1:
     with st.container(border=True):
+        st.image(
+            "https://images.unsplash.com/photo-1530497610245-94d3c16cda28?auto=format&fit=crop&w=700&q=80",
+            use_container_width=True
+        )
         st.subheader("Entrópio e Ectrópio")
-        st.write("Correção de alterações da posição das pálpebras que podem causar irritação, desconforto ou lacrimejo.")
+        st.write(
+            """
+            Correção de alterações da posição das pálpebras que podem causar
+            irritação, desconforto ou lacrimejo.
+            """
+        )
 
 with t2:
     with st.container(border=True):
+        st.image(
+            "https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=700&q=80",
+            use_container_width=True
+        )
         st.subheader("Lesões Palpebrais")
-        st.write("Avaliação, acompanhamento e eventual remoção de lesões localizadas nas pálpebras.")
+        st.write(
+            """
+            Avaliação, acompanhamento e eventual remoção de lesões localizadas
+            nas pálpebras.
+            """
+        )
 
 with t3:
     with st.container(border=True):
+        st.image(
+            "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=700&q=80",
+            use_container_width=True
+        )
         st.subheader("Órbita")
-        st.write("Avaliação médica de alterações orbitárias e da região em redor do olho.")
+        st.write(
+            """
+            Avaliação médica de alterações orbitárias e da região em redor do olho.
+            """
+        )
 
 with t4:
     with st.container(border=True):
+        st.image(
+            "https://images.unsplash.com/photo-1606811971618-4486d14f3f99?auto=format&fit=crop&w=700&q=80",
+            use_container_width=True
+        )
         st.subheader("Estética Periocular")
-        st.write("Abordagem médica da estética do olhar, respeitando a anatomia e a naturalidade facial.")
+        st.write(
+            """
+            Abordagem médica da estética do olhar, respeitando a anatomia
+            e a naturalidade facial.
+            """
+        )
 
 st.markdown('<div class="gold-line"></div>', unsafe_allow_html=True)
 
-# Localizações
-st.markdown('<div class="section-label">Onde estamos</div>', unsafe_allow_html=True)
+# =========================
+# LOCALIZAÇÕES
+# =========================
+st.markdown(
+    '<div class="section-label">Onde estamos</div>',
+    unsafe_allow_html=True
+)
 st.header("Localizações")
 
 l1, l2, l3 = st.columns(3)
@@ -276,38 +415,82 @@ with l3:
 
 st.markdown('<div class="gold-line"></div>', unsafe_allow_html=True)
 
-# Artigos
-st.markdown('<div class="section-label">Saúde ocular</div>', unsafe_allow_html=True)
+# =========================
+# ARTIGOS
+# =========================
+st.markdown(
+    '<div class="section-label">Saúde ocular</div>',
+    unsafe_allow_html=True
+)
 st.header("Artigos e informação")
 
 a1, a2, a3 = st.columns(3)
 
 with a1:
     with st.container(border=True):
+        st.image(
+            "https://images.unsplash.com/photo-1551190822-a9333d879b1f?auto=format&fit=crop&w=700&q=80",
+            use_container_width=True
+        )
         st.subheader("O que é a Oculoplástica?")
-        st.write("Área da oftalmologia dedicada às pálpebras, vias lacrimais, órbita e região periocular.")
+        st.write(
+            """
+            Área da oftalmologia dedicada às pálpebras, vias lacrimais,
+            órbita e região periocular.
+            """
+        )
 
 with a2:
     with st.container(border=True):
+        st.image(
+            "https://images.unsplash.com/photo-1582750433449-648ed127bb54?auto=format&fit=crop&w=700&q=80",
+            use_container_width=True
+        )
         st.subheader("Blefaroplastia")
-        st.write("Quando pode ser funcional, estética ou uma combinação das duas abordagens.")
+        st.write(
+            """
+            Quando pode ser funcional, estética ou uma combinação das duas abordagens.
+            """
+        )
 
 with a3:
     with st.container(border=True):
+        st.image(
+            "https://images.unsplash.com/photo-1581093458791-9f3c3900df7b?auto=format&fit=crop&w=700&q=80",
+            use_container_width=True
+        )
         st.subheader("Lacrimejo persistente")
-        st.write("Quando o lacrimejo pode estar relacionado com alterações das vias lacrimais.")
+        st.write(
+            """
+            Quando o lacrimejo pode estar relacionado com alterações das vias lacrimais.
+            """
+        )
 
 st.markdown('<div class="gold-line"></div>', unsafe_allow_html=True)
 
-# Contacto
+# =========================
+# CONTACTO
+# =========================
 with st.container(border=True):
-    st.header("Marcar Consulta")
-    st.write(
-        """
-        Para avaliação em oculoplástica, cirurgia palpebral, vias lacrimais
-        ou estética periocular.
-        """
-    )
-    st.button("Contactar a Blink Clinic")
+    c1, c2 = st.columns([1, 1])
 
-st.markdown('<div class="footer">Blink Clinic · Oculoplástica · Saúde e estética do olhar</div>', unsafe_allow_html=True)
+    with c1:
+        st.header("Marcar Consulta")
+        st.write(
+            """
+            Para avaliação em oculoplástica, cirurgia palpebral, vias lacrimais
+            ou estética periocular.
+            """
+        )
+        st.button("Contactar a Blink Clinic")
+
+    with c2:
+        st.image(
+            "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=900&q=80",
+            use_container_width=True
+        )
+
+st.markdown(
+    '<div class="footer">Blink Clinic · Oculoplástica · Saúde e estética do olhar</div>',
+    unsafe_allow_html=True
+)
