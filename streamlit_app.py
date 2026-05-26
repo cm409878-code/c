@@ -159,6 +159,7 @@ st.markdown(
         font-size: 44px;
         color: #062f3a;
         margin-bottom: 32px;
+        font-family: Georgia, "Times New Roman", serif;
     }
 
     .service-grid {
@@ -379,15 +380,14 @@ st.markdown(
             </div>
         </div>
 
-       st.markdown(
-    """
-    <div class="hero-card">
-        <div class="eye-symbol">👁️</div>
-        <h3>Saúde e estética do olhar</h3>
-        <p>
-            Uma clínica dedicada à região periocular, combinando rigor médico,
-            sensibilidade estética e acompanhamento personalizado.
-        </p>
+        <div class="hero-card">
+            <div class="eye-symbol">👁️</div>
+            <h3>Saúde e estética do olhar</h3>
+            <p>
+                Uma clínica dedicada à região periocular, combinando rigor médico,
+                sensibilidade estética e acompanhamento personalizado.
+            </p>
+        </div>
     </div>
     """,
     unsafe_allow_html=True
