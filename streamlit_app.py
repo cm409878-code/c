@@ -1,4 +1,5 @@
 import streamlit as st
+import os
 
 st.set_page_config(
     page_title="Blink Clinic | Oculoplástica",
@@ -6,13 +7,19 @@ st.set_page_config(
     layout="wide"
 )
 
-# IMAGENS REAIS / EDUCATIVAS
-IMG_BLEFARO = "https://commons.wikimedia.org/wiki/Special:FilePath/Upper%20eyelid%20blepharoplasty%20incision.png"
-IMG_PTOSE = "https://commons.wikimedia.org/wiki/Special:FilePath/Congenitalptosis.JPG"
-IMG_VIAS = "https://commons.wikimedia.org/wiki/Special:FilePath/Tear%20system.svg"
-IMG_MARCACAO = "https://commons.wikimedia.org/wiki/Special:FilePath/Eyelid%20surgery%20outline.jpg"
-IMG_BLEFARO_INF = "https://commons.wikimedia.org/wiki/Special:FilePath/Lower%20Eyelid%20Blepharoplasty.jpg"
+# -------------------------
+# Função para mostrar imagem
+# -------------------------
+def mostrar_imagem(nome, legenda=""):
+    if os.path.exists(nome):
+        st.image(nome, use_container_width=True, caption=legenda)
+    else:
+        st.warning(f"Imagem em falta: {nome}")
 
+
+# -------------------------
+# Estilo visual
+# -------------------------
 st.markdown(
     """
     <style>
@@ -29,9 +36,31 @@ st.markdown(
         color: white !important;
     }
 
+    .block-container {
+        padding-top: 2rem;
+        padding-left: 4rem;
+        padding-right: 4rem;
+        max-width: 1400px;
+    }
+
     h1, h2, h3 {
         font-family: Georgia, "Times New Roman", serif;
         color: #062f3a;
+    }
+
+    div.stButton > button {
+        background: linear-gradient(135deg, #062f3a 0%, #b1843f 100%);
+        color: white;
+        border-radius: 999px;
+        padding: 0.75rem 1.5rem;
+        border: none;
+        font-weight: 700;
+    }
+
+    div.stButton > button:hover {
+        background: #b1843f;
+        color: white;
+        border: none;
     }
 
     .brand-title {
@@ -66,34 +95,19 @@ st.markdown(
         font-size: 13px;
     }
 
-    div.stButton > button {
-        background: linear-gradient(135deg, #062f3a 0%, #b1843f 100%);
-        color: white;
-        border-radius: 999px;
-        padding: 0.75rem 1.5rem;
-        border: none;
-        font-weight: 700;
-    }
-
-    div.stButton > button:hover {
-        background: #b1843f;
-        color: white;
-        border: none;
+    .note {
+        background: rgba(255, 255, 255, 0.80);
+        border-left: 5px solid #b1843f;
+        padding: 18px 22px;
+        border-radius: 16px;
+        margin-top: 18px;
+        box-shadow: 0 8px 22px rgba(90, 65, 30, 0.08);
     }
 
     img {
         border-radius: 22px;
         border: 1px solid rgba(177, 132, 63, 0.35);
         box-shadow: 0 10px 25px rgba(90, 65, 30, 0.12);
-    }
-
-    .note {
-        background: rgba(255, 255, 255, 0.78);
-        border-left: 5px solid #b1843f;
-        padding: 18px 22px;
-        border-radius: 16px;
-        margin-top: 18px;
-        box-shadow: 0 8px 22px rgba(90, 65, 30, 0.08);
     }
 
     .footer {
@@ -104,17 +118,47 @@ st.markdown(
         font-style: italic;
         margin-top: 45px;
     }
+
+    @media (max-width: 900px) {
+        .brand-title {
+            font-size: 40px;
+            letter-spacing: 5px;
+        }
+
+        .brand-subtitle {
+            font-size: 20px;
+        }
+
+        .block-container {
+            padding-left: 1.2rem;
+            padding-right: 1.2rem;
+        }
+    }
     </style>
     """,
     unsafe_allow_html=True
 )
 
+# -------------------------
+# Menu
+# -------------------------
 st.sidebar.title("BLINK CLINIC")
+st.sidebar.caption("Oculoplástica · Saúde e estética do olhar")
+
 pagina = st.sidebar.radio(
     "Menu",
-    ["Início", "Serviços", "Galeria", "Sobre", "Contactos"]
+    [
+        "Início",
+        "Serviços",
+        "Galeria",
+        "Sobre",
+        "Contactos"
+    ]
 )
 
+# -------------------------
+# Cabeçalho
+# -------------------------
 st.markdown('<div class="brand-title">BLINK CLINIC</div>', unsafe_allow_html=True)
 st.markdown(
     '<div class="brand-subtitle">Oculoplástica · Pálpebras · Vias Lacrimais · Órbita</div>',
@@ -122,11 +166,18 @@ st.markdown(
 )
 st.markdown('<div class="gold-line"></div>', unsafe_allow_html=True)
 
+# -------------------------
+# Página Início
+# -------------------------
 if pagina == "Início":
     col1, col2 = st.columns([1.15, 0.85])
 
     with col1:
-        st.markdown('<div class="section-label">Clínica de Oculoplástica</div>', unsafe_allow_html=True)
+        st.markdown(
+            '<div class="section-label">Clínica de Oculoplástica</div>',
+            unsafe_allow_html=True
+        )
+
         st.title("Precisão médica para a saúde e estética do olhar")
 
         st.write(
@@ -156,85 +207,169 @@ if pagina == "Início":
         )
 
     with col2:
-        st.image(IMG_BLEFARO, caption="Marcação de blefaroplastia superior", use_container_width=True)
+        mostrar_imagem(
+            "oculoplastica.png",
+            "Planeamento e avaliação em oculoplástica"
+        )
 
     st.markdown('<div class="gold-line"></div>', unsafe_allow_html=True)
 
     c1, c2, c3 = st.columns(3)
 
     with c1:
-        st.image(IMG_MARCACAO, caption="Marcação palpebral", use_container_width=True)
-        st.subheader("Pálpebras")
-        st.write("Blefaroplastia, ptose palpebral, entrópio, ectrópio e lesões palpebrais.")
+        mostrar_imagem("blefaroplastia.png", "Blefaroplastia")
+        st.subheader("Blefaroplastia")
+        st.write(
+            """
+            Cirurgia das pálpebras superiores e/ou inferiores, com objetivo funcional,
+            estético ou combinado.
+            """
+        )
 
     with c2:
-        st.image(IMG_VIAS, caption="Sistema lacrimal", use_container_width=True)
+        mostrar_imagem("vias_lacrimais.png", "Vias lacrimais")
         st.subheader("Vias lacrimais")
-        st.write("Avaliação de lacrimejo persistente e obstrução das vias lacrimais.")
+        st.write(
+            """
+            Avaliação de lacrimejo persistente, obstruções e alterações
+            do sistema lacrimal.
+            """
+        )
 
     with c3:
-        st.image(IMG_PTOSE, caption="Ptose palpebral", use_container_width=True)
+        mostrar_imagem("ptose_palpebral.png", "Ptose palpebral")
         st.subheader("Ptose palpebral")
-        st.write("Avaliação da queda da pálpebra superior e impacto funcional ou estético.")
+        st.write(
+            """
+            Avaliação da queda da pálpebra superior e do seu impacto funcional
+            ou estético.
+            """
+        )
 
+# -------------------------
+# Página Serviços
+# -------------------------
 elif pagina == "Serviços":
-    st.markdown('<div class="section-label">Serviços médicos</div>', unsafe_allow_html=True)
+    st.markdown(
+        '<div class="section-label">Serviços médicos</div>',
+        unsafe_allow_html=True
+    )
     st.header("Serviços de Oculoplástica")
 
     col1, col2 = st.columns(2)
 
     with col1:
-        st.image(IMG_BLEFARO, caption="Blefaroplastia superior", use_container_width=True)
         with st.container(border=True):
+            mostrar_imagem("blefaroplastia.png", "Blefaroplastia")
             st.subheader("Blefaroplastia")
             st.write(
                 """
-                Cirurgia das pálpebras superiores e/ou inferiores, com objetivo funcional,
-                estético ou combinado.
+                A blefaroplastia é uma cirurgia das pálpebras superiores e/ou inferiores.
+                Pode ter finalidade funcional, estética ou ambas, dependendo da avaliação médica.
                 """
             )
 
-        st.image(IMG_PTOSE, caption="Ptose palpebral", use_container_width=True)
         with st.container(border=True):
+            mostrar_imagem("ptose_palpebral.png", "Ptose palpebral")
             st.subheader("Ptose palpebral")
-            st.write("Avaliação e tratamento da queda da pálpebra superior.")
+            st.write(
+                """
+                A ptose palpebral corresponde à queda da pálpebra superior.
+                Pode interferir com a visão, a simetria facial e a expressão do olhar.
+                """
+            )
+
+        with st.container(border=True):
+            st.subheader("Entrópio e Ectrópio")
+            st.write(
+                """
+                Correção de alterações da posição das pálpebras, que podem causar
+                irritação ocular, lacrimejo, desconforto ou exposição da superfície ocular.
+                """
+            )
 
     with col2:
-        st.image(IMG_VIAS, caption="Vias lacrimais", use_container_width=True)
         with st.container(border=True):
+            mostrar_imagem("vias_lacrimais.png", "Vias lacrimais")
             st.subheader("Vias lacrimais")
-            st.write("Avaliação de lacrimejo persistente e alterações da drenagem lacrimal.")
+            st.write(
+                """
+                Avaliação de lacrimejo persistente, obstruções lacrimais e alterações
+                associadas à drenagem da lágrima.
+                """
+            )
 
-        st.image(IMG_BLEFARO_INF, caption="Blefaroplastia inferior", use_container_width=True)
         with st.container(border=True):
-            st.subheader("Estética periocular")
-            st.write("Abordagem médica da estética do olhar com naturalidade e segurança.")
+            mostrar_imagem("oculoplastica.png", "Oculoplástica")
+            st.subheader("Lesões palpebrais")
+            st.write(
+                """
+                Observação, diagnóstico, acompanhamento e eventual remoção de lesões
+                localizadas nas pálpebras.
+                """
+            )
 
+        with st.container(border=True):
+            mostrar_imagem("estetica_periocular.png", "Estética periocular")
+            st.subheader("Estética periocular")
+            st.write(
+                """
+                Abordagem médica da estética do olhar, respeitando a anatomia,
+                a função palpebral e a naturalidade facial.
+                """
+            )
+
+    st.markdown(
+        """
+        <div class="note">
+        Todos os procedimentos dependem de avaliação médica individual.
+        A informação apresentada é geral e não substitui uma consulta.
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+# -------------------------
+# Página Galeria
+# -------------------------
 elif pagina == "Galeria":
-    st.markdown('<div class="section-label">Imagens clínicas e educativas</div>', unsafe_allow_html=True)
-    st.header("Galeria")
+    st.markdown(
+        '<div class="section-label">Imagens clínicas e educativas</div>',
+        unsafe_allow_html=True
+    )
+    st.header("Galeria de Oculoplástica")
 
     g1, g2, g3 = st.columns(3)
 
     with g1:
-        st.image(IMG_BLEFARO, caption="Blefaroplastia superior", use_container_width=True)
-        st.image(IMG_MARCACAO, caption="Marcação cirúrgica", use_container_width=True)
+        mostrar_imagem("oculoplastica.png", "Oculoplástica")
+        mostrar_imagem("blefaroplastia.png", "Blefaroplastia")
 
     with g2:
-        st.image(IMG_PTOSE, caption="Ptose palpebral", use_container_width=True)
-        st.image(IMG_BLEFARO_INF, caption="Blefaroplastia inferior", use_container_width=True)
+        mostrar_imagem("vias_lacrimais.png", "Vias lacrimais")
+        mostrar_imagem("ptose_palpebral.png", "Ptose palpebral")
 
     with g3:
-        st.image(IMG_VIAS, caption="Sistema lacrimal", use_container_width=True)
+        mostrar_imagem("estetica_periocular.png", "Estética periocular")
 
+# -------------------------
+# Página Sobre
+# -------------------------
 elif pagina == "Sobre":
     col1, col2 = st.columns([0.9, 1.1])
 
     with col1:
-        st.image(IMG_BLEFARO, caption="Blink Clinic · Oculoplástica", use_container_width=True)
+        mostrar_imagem(
+            "oculoplastica.png",
+            "Blink Clinic · Oculoplástica"
+        )
 
     with col2:
-        st.markdown('<div class="section-label">Sobre a clínica</div>', unsafe_allow_html=True)
+        st.markdown(
+            '<div class="section-label">Sobre a clínica</div>',
+            unsafe_allow_html=True
+        )
+
         st.header("Cuidar do olhar com precisão e naturalidade")
 
         st.write(
@@ -251,8 +386,24 @@ elif pagina == "Sobre":
         st.write("• Comunicação clara com o paciente")
         st.write("• Planeamento terapêutico personalizado")
 
+        st.markdown(
+            """
+            <div class="note">
+            A região periocular é delicada e expressiva. Por isso, cada tratamento
+            deve respeitar a anatomia, a função ocular e a identidade facial.
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+# -------------------------
+# Página Contactos
+# -------------------------
 elif pagina == "Contactos":
-    st.markdown('<div class="section-label">Marcação</div>', unsafe_allow_html=True)
+    st.markdown(
+        '<div class="section-label">Marcação</div>',
+        unsafe_allow_html=True
+    )
     st.header("Marcar Consulta")
 
     col1, col2 = st.columns([1, 1])
@@ -279,12 +430,14 @@ elif pagina == "Contactos":
                 st.success("Pedido registado. Esta versão ainda não envia emails automaticamente.")
 
     with col2:
-        st.image(IMG_MARCACAO, caption="Blink Clinic · Contactos", use_container_width=True)
-        st.subheader("Blink Clinic")
-        st.write("Oculoplástica")
-        st.write("Pálpebras · Vias lacrimais · Órbita")
-        st.write("Contacto: a definir")
-        st.write("Localização: a definir")
+        mostrar_imagem("estetica_periocular.png", "Blink Clinic · Contactos")
+
+        with st.container(border=True):
+            st.subheader("Blink Clinic")
+            st.write("Oculoplástica")
+            st.write("Pálpebras · Vias lacrimais · Órbita")
+            st.write("Contacto: a definir")
+            st.write("Localização: a definir")
 
 st.markdown('<div class="gold-line"></div>', unsafe_allow_html=True)
 st.markdown(
