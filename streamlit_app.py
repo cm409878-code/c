@@ -379,14 +379,15 @@ st.markdown(
             </div>
         </div>
 
-        <div class="hero-card">
-            <div class="eye-symbol">👁️</div>
-            <h3>Saúde e estética do olhar</h3>
-            <p>
-                Uma clínica dedicada à região periocular, combinando rigor médico,
-                sensibilidade estética e acompanhamento personalizado.
-            </p>
-        </div>
+       st.markdown(
+    """
+    <div class="hero-card">
+        <div class="eye-symbol">👁️</div>
+        <h3>Saúde e estética do olhar</h3>
+        <p>
+            Uma clínica dedicada à região periocular, combinando rigor médico,
+            sensibilidade estética e acompanhamento personalizado.
+        </p>
     </div>
     """,
     unsafe_allow_html=True
