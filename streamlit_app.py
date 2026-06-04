@@ -7,7 +7,9 @@ st.set_page_config(
     layout="wide"
 )
 
-# ---------- ESTILO ----------
+# ======================================================
+# ESTILO
+# ======================================================
 st.markdown(
     """
     <style>
@@ -129,6 +131,22 @@ st.markdown(
         font-size: 15.5px;
     }
 
+    .foto-legenda {
+        text-align: center;
+        color: #8a6a38;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 15px;
+        font-style: italic;
+        margin-top: -8px;
+        margin-bottom: 22px;
+    }
+
+    img {
+        border-radius: 24px !important;
+        border: 1px solid rgba(177,132,63,0.35);
+        box-shadow: 0 14px 34px rgba(90,65,30,0.13);
+    }
+
     div.stButton > button {
         background: linear-gradient(135deg, #062f3a 0%, #b1843f 100%);
         color: white;
@@ -177,7 +195,9 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# ---------- IMAGENS CRIADAS NO CÓDIGO ----------
+# ======================================================
+# DESENHOS DE RESERVA
+# ======================================================
 def mostrar_svg(svg, altura=300):
     components.html(svg, height=altura)
 
@@ -309,7 +329,9 @@ def imagem_estetica():
     """
 
 
-# ---------- MENU ----------
+# ======================================================
+# MENU E UPLOAD DE FOTOGRAFIAS
+# ======================================================
 st.sidebar.title("BLINK CLINIC")
 st.sidebar.caption("Oculoplástica · Saúde e estética do olhar")
 
@@ -317,6 +339,7 @@ pagina = st.sidebar.radio(
     "Menu",
     [
         "Início",
+        "A Clínica",
         "Serviços",
         "Galeria",
         "Informação Clínica",
@@ -325,7 +348,45 @@ pagina = st.sidebar.radio(
     ]
 )
 
-# ---------- CABEÇALHO ----------
+st.sidebar.divider()
+st.sidebar.subheader("Fotografias da clínica")
+
+foto_hero = st.sidebar.file_uploader(
+    "Fotografia principal",
+    type=["png", "jpg", "jpeg"]
+)
+
+foto_rececao = st.sidebar.file_uploader(
+    "Fotografia da receção",
+    type=["png", "jpg", "jpeg"]
+)
+
+foto_sala = st.sidebar.file_uploader(
+    "Fotografia da sala de espera",
+    type=["png", "jpg", "jpeg"]
+)
+
+foto_consultorio = st.sidebar.file_uploader(
+    "Fotografia do consultório",
+    type=["png", "jpg", "jpeg"]
+)
+
+foto_extra = st.sidebar.file_uploader(
+    "Fotografia extra / ambiente",
+    type=["png", "jpg", "jpeg"]
+)
+
+
+def mostrar_foto_ou_svg(foto, svg, legenda="", altura=300):
+    if foto is not None:
+        st.image(foto, caption=legenda, use_container_width=True)
+    else:
+        mostrar_svg(svg, altura)
+
+
+# ======================================================
+# CABEÇALHO
+# ======================================================
 st.markdown('<div class="titulo">BLINK CLINIC</div>', unsafe_allow_html=True)
 st.markdown(
     '<div class="frase-chave">A arte de cuidar do olhar com precisão, segurança e naturalidade.</div>',
@@ -337,7 +398,9 @@ st.markdown(
 )
 st.markdown('<div class="linha"></div>', unsafe_allow_html=True)
 
-# ---------- PÁGINAS ----------
+# ======================================================
+# PÁGINA INÍCIO
+# ======================================================
 if pagina == "Início":
     col1, col2 = st.columns([1, 1])
 
@@ -382,7 +445,12 @@ if pagina == "Início":
         )
 
     with col2:
-        mostrar_svg(imagem_blefaroplastia())
+        mostrar_foto_ou_svg(
+            foto_hero,
+            imagem_blefaroplastia(),
+            "Blink Clinic · Espaço clínico",
+            300
+        )
 
     st.markdown('<div class="linha"></div>', unsafe_allow_html=True)
 
@@ -412,6 +480,56 @@ if pagina == "Início":
             unsafe_allow_html=True
         )
 
+# ======================================================
+# PÁGINA A CLÍNICA
+# ======================================================
+elif pagina == "A Clínica":
+    st.header("A Clínica")
+
+    col1, col2 = st.columns([1, 1])
+
+    with col1:
+        mostrar_foto_ou_svg(
+            foto_rececao,
+            imagem_estetica(),
+            "Receção Blink Clinic",
+            300
+        )
+
+    with col2:
+        st.markdown('<div class="etiqueta">Sobre a clínica</div>', unsafe_allow_html=True)
+        st.header("Um espaço pensado para cuidar do olhar")
+        st.write(
+            """
+            A Blink Clinic foi pensada para transmitir conforto, sofisticação e segurança.
+            A estética do espaço reflete a filosofia da clínica: detalhe, precisão e naturalidade.
+            """
+        )
+        st.write("• Ambiente premium e acolhedor")
+        st.write("• Consulta personalizada")
+        st.write("• Foco em resultados naturais")
+        st.write("• Acompanhamento próximo")
+        st.write("• Abordagem médica rigorosa")
+
+    st.markdown('<div class="linha"></div>', unsafe_allow_html=True)
+
+    col3, col4 = st.columns(2)
+
+    with col3:
+        if foto_sala is not None:
+            st.image(foto_sala, caption="Sala de espera", use_container_width=True)
+        else:
+            mostrar_svg(imagem_blefaroplastia(), 300)
+
+    with col4:
+        if foto_consultorio is not None:
+            st.image(foto_consultorio, caption="Consultório", use_container_width=True)
+        else:
+            mostrar_svg(imagem_vias(), 300)
+
+# ======================================================
+# SERVIÇOS
+# ======================================================
 elif pagina == "Serviços":
     st.header("Serviços de Oculoplástica")
 
@@ -447,19 +565,42 @@ elif pagina == "Serviços":
             st.subheader("Lesões palpebrais")
             st.write("Avaliação, diagnóstico e eventual remoção de lesões localizadas nas pálpebras.")
 
+# ======================================================
+# GALERIA
+# ======================================================
 elif pagina == "Galeria":
-    st.header("Galeria visual")
+    st.header("Galeria")
 
     g1, g2 = st.columns(2)
 
     with g1:
-        mostrar_svg(imagem_blefaroplastia())
-        mostrar_svg(imagem_vias())
+        if foto_hero is not None:
+            st.image(foto_hero, caption="Fotografia principal", use_container_width=True)
+        else:
+            mostrar_svg(imagem_blefaroplastia(), 300)
+
+        if foto_sala is not None:
+            st.image(foto_sala, caption="Sala de espera", use_container_width=True)
+        else:
+            mostrar_svg(imagem_vias(), 300)
 
     with g2:
-        mostrar_svg(imagem_ptose())
-        mostrar_svg(imagem_estetica())
+        if foto_rececao is not None:
+            st.image(foto_rececao, caption="Receção", use_container_width=True)
+        else:
+            mostrar_svg(imagem_ptose(), 300)
 
+        if foto_consultorio is not None:
+            st.image(foto_consultorio, caption="Consultório", use_container_width=True)
+        else:
+            mostrar_svg(imagem_estetica(), 300)
+
+    if foto_extra is not None:
+        st.image(foto_extra, caption="Ambiente Blink Clinic", use_container_width=True)
+
+# ======================================================
+# INFORMAÇÃO CLÍNICA
+# ======================================================
 elif pagina == "Informação Clínica":
     st.header("Informação Clínica")
 
@@ -480,6 +621,9 @@ elif pagina == "Informação Clínica":
             st.subheader("E as vias lacrimais?")
             st.write("Alterações na drenagem da lágrima podem causar lacrimejo persistente.")
 
+# ======================================================
+# MARCAR CONSULTA
+# ======================================================
 elif pagina == "Marcar Consulta":
     st.header("Marcar Avaliação Gratuita")
 
@@ -518,8 +662,16 @@ elif pagina == "Marcar Consulta":
             st.success("Pedido registado. Esta versão ainda não envia emails automaticamente.")
 
     with col2:
-        mostrar_svg(imagem_blefaroplastia())
+        mostrar_foto_ou_svg(
+            foto_rececao,
+            imagem_blefaroplastia(),
+            "Blink Clinic · Avaliação gratuita",
+            300
+        )
 
+# ======================================================
+# CONTACTOS
+# ======================================================
 elif pagina == "Contactos":
     st.header("Contactos")
 
@@ -535,7 +687,12 @@ elif pagina == "Contactos":
         st.write("Morada: a definir")
 
     with col2:
-        mostrar_svg(imagem_estetica())
+        mostrar_foto_ou_svg(
+            foto_rececao,
+            imagem_estetica(),
+            "Blink Clinic",
+            300
+        )
 
 st.markdown('<div class="linha"></div>', unsafe_allow_html=True)
 st.markdown(
