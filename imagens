@@ -1,5 +1,21 @@
-oculoplastica.png
-blefaroplastia.png
-vias_lacrimais.png
-ptose_palpebral.png
-estetica_periocular.png
+import streamlit as st
+import base64
+from io import BytesIO
+
+st.set_page_config(
+    page_title="Blink Clinic | Oculoplástica",
+    page_icon="👁️",
+    layout="wide"
+)
+
+IMAGENS = {
+    "clinica_hero": """AQUI_FICA_UMA_IMAGEM_INTEIRA_EM_BASE64""",
+    "clinica_mosaico": """AQUI_FICA_OUTRA_IMAGEM_INTEIRA_EM_BASE64""",
+    "sala_espera": """AQUI_FICA_OUTRA_IMAGEM_INTEIRA_EM_BASE64""",
+    "rececao": """AQUI_FICA_OUTRA_IMAGEM_INTEIRA_EM_BASE64""",
+    "consultorio": """AQUI_FICA_OUTRA_IMAGEM_INTEIRA_EM_BASE64""",
+}
+
+def mostrar_imagem(nome, legenda=""):
+    dados = base64.b64decode(IMAGENS[nome])
+    st.image(BytesIO(dados), caption=legenda, use_container_width=True)
