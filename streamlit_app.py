@@ -6,12 +6,13 @@ st.set_page_config(
     layout="wide"
 )
 
-st.title("Blink Clinic")
+st.title("👁️ Blink Clinic")
+st.subheader("Oculoplástica")
 
-st.write("A aplicação está a funcionar.")
+st.success("A aplicação está a funcionar!")
 
 foto = st.file_uploader(
-    "Carrega uma fotografia",
+    "Carregar fotografia",
     type=["png", "jpg", "jpeg"]
 )
 
